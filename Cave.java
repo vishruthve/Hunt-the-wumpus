@@ -5,7 +5,8 @@ public class Cave extends Base{
 	private class Cell{
 		private final int CELLID;
 		private int[] NEIGHBORIDS = new int[6];
-		private int[] DOORLAYOUT  = new int[6];
+		private int[] BASEDOORLAYOUT  = new boolean[6];
+		private int[] SPUNDOORLAYOUT = new boolean[6];
 		private int rotation = 0;
 
 		
