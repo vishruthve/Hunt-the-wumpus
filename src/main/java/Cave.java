@@ -2,23 +2,38 @@ public class Cave extends Base{
 	private int CELLCOUNT = 0;
 	private Cell[] cavern = new Cell[30];
 	
-	private class Cell{
+	public class Cell{
 		private final int CELLID;
-		private int[] NEIGHBORIDS = new int[6];
-		private int[] BASEDOORLAYOUT  = new boolean[6];
-		private int[] SPUNDOORLAYOUT = new boolean[6];
-		private int rotation = 0;
+		private final int[] NEIGHBORIDS;
+		private final boolean[] BASEDOORLAYOUT;
+		private boolean[] doors = new boolean[6];
+		public int rotation = 0;
+
+		public Cell(int id, int[] neighbor){
+			CELLID = id;
+			NEIGHBORIDS = neighbor;
+			BASEDOORLAYOUT = new boolean[] {false, false, true, false, true, false};
+		}
+
+		public boolean[] doorState(){
+		  for(int i=0;i<6;i++) doors[i]=BASEDOORLAYOUT[(i+rotation)%6+((i+rotation)%6<0?6:0)];
+			return doors;
+		}
 
 		
 	}
+
+	
 	// this took me two fucking hours
 	/*
 	neighbor linking scheme
-
-	 E   F
-	D [ID]A
-	 C   B
-
+	
+    \  _  /
+	  /E   F\
+	--D [ID]A--
+	  \C _ B/
+    /     \
+	 
 	ID     A  B  C  D  E  F
 	1  = [ 2, 4, 6, 3,12,10]
 	2  = [ 3, 5, 4, 1,10,11]
