@@ -1,24 +1,60 @@
+import java.util.*;	
 public class Cave extends Base{
-	private int CELLCOUNT = 0;
-	private Cell[] cavern = new Cell[30];
+	private final int CELLCOUNT;
+	private Cell[] cavern;
+
+	public Cave(int[][] data){
+		CELLCOUNT = data.length;
+		cavern = new Cell[CELLCOUNT];
+		for(int i=0;i<CELLCOUNT;i++) cavern[i]=new Cell(data[i]);
+	}
+
+	public boolean canTraverse(int id, int dir){
+		return cavern[id].doorState()[dir] && cavern[cavern[id].getNeighbors()[dir]].doorState()[(dir+3)%6];
+	}
+
+	
 	
 	public class Cell{
-		private final int CELLID;
+		private final int CELLID, XPOS, YPOS, SHAPE;
 		private final int[] NEIGHBORIDS;
-		private final boolean[] BASEDOORLAYOUT;
-		private boolean[] doors = new boolean[6];
-		public int rotation = 0;
+		public int rotation;
 
-		public Cell(int id, int[] neighbor){
-			CELLID = id;
-			NEIGHBORIDS = neighbor;
-			BASEDOORLAYOUT = new boolean[] {false, false, true, false, true, false};
+		public Cell(int[] data){
+			CELLID = data[0];
+			XPOS   = data[1];
+			YPOS   = data[2];
+			NEIGHBORIDS = Arrays.copyOfRange(data, 3, 9);
+			SHAPE = data[9];
+			rotation = data[10];
+		}
+
+		public int[] getNeighbors(){
+			return NEIGHBORIDS;
 		}
 
 		public boolean[] doorState(){
-		  for(int i=0;i<6;i++) doors[i]=BASEDOORLAYOUT[(i+rotation)%6+((i+rotation)%6<0?6:0)];
-			return doors;
+			boolean[] doors = new boolean[6];
+			doors[0] = true;
+			switch(SHAPE){
+				case 1: doors[1] = true; break;
+				case 2: doors[2] = true; break;
+				case 3: doors[3] = true; break;
+				case 4: doors[1] = true; doors[2] = true; break;
+				case 5: doors[1] = true; doors[3] = true; break;
+				case 6: doors[2] = true; doors[3] = true; break;
+				case 7: doors[2] = true; doors[4] = true; break;
+			}
+			boolean[] doorsrotated = new boolean[6];
+			for(int i=0;i<6;i++) doorsrotated[i]=doors[(i-rotation)%6+((i-rotation)%6<0?6:0)];
+			return doorsrotated;
 		}
+
+		public String toString(){
+			return CELLID+" "+XPOS+" "+YPOS+" "+Arrays.toString(NEIGHBORIDS)+" "+SHAPE+" "+rotation;
+		}
+
+		
 
 		
 	}
