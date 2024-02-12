@@ -14,4 +14,21 @@ public class Base{
 		System.out.println(s);
 	}
 
+	public enum Direction {
+		RIGHT (0),
+		DOWNRIGHT (1),
+		DOWNLEFT (2),
+		LEFT (3),
+		UPLEFT (4),
+		UPRIGHT (5);
+		private final int id;
+
+		public int id() {return id;}
+
+		Direction(int dir) {
+			this.id = dir;
+		}
+
+	}
+
 }

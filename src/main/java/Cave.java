@@ -1,5 +1,17 @@
 // Aiden Whitlock
 
+
+// So this is all big and scary and kind of fucked up
+// And documenting this is going to nigh impossible
+// my plan is to keep all my fuckedup cell logic in here
+// and all you have to is ask "i am in cell X, can i go left?"
+// and it will tell you yes or no
+// etc
+// dont try to understand this. ill do my best to have it easy as pie
+
+
+
+
 import java.util.*;	
 public class Cave extends Base{
 	private final int CELLCOUNT;
@@ -34,6 +46,8 @@ public class Cave extends Base{
 		public int[] getNeighbors(){
 			return NEIGHBORIDS;
 		}
+		
+		// TODO: make less fucking obscured
 
 		public boolean[] doorState(){
 			boolean[] doors = new boolean[6];
@@ -52,9 +66,10 @@ public class Cave extends Base{
 			return doorsrotated;
 		}
 
-		public String toString(){
+		public String toString(){ 
 			return CELLID+" "+XPOS+" "+YPOS+" "+Arrays.toString(NEIGHBORIDS)+" "+SHAPE+" "+rotation;
 		}
+
 
 		
 
