@@ -1,4 +1,4 @@
-# Hmm. this *hopwfully* doesnt suck.
+# Hmm. this *hopefully* doesnt suck.
 
 okay so for anyone checking ive already written a shitton of code LOL
 
