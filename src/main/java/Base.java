@@ -1,3 +1,4 @@
+// Aiden Whitlock
 public class Base{
 	// My idea here is that we have a "root" class
 	// that every single object in the code inherits
