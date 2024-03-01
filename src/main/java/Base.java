@@ -1,3 +1,4 @@
+// Aiden Whitlock
 public class Base{
 	// My idea here is that we have a "root" class
 	// that every single object in the code inherits
@@ -11,6 +12,23 @@ public class Base{
 	// shorthand for System.out.println()
 	public static void log(String s){
 		System.out.println(s);
+	}
+
+	public enum Direction {
+		RIGHT (0),
+		DOWNRIGHT (1),
+		DOWNLEFT (2),
+		LEFT (3),
+		UPLEFT (4),
+		UPRIGHT (5);
+		private final int id;
+
+		public int id() {return id;}
+
+		Direction(int dir) {
+			this.id = dir;
+		}
+
 	}
 
 }
