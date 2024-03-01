@@ -1,3 +1,9 @@
-Here is the only file so far.
+# Hmm. this *hopefully* doesnt suck.
 
-Sync Test
+okay so for anyone checking ive already written a shitton of code LOL
+
+uhm. hope this doesnt fuck shit up
+
+ive documented like absolutely nothing yet and its very advanced code
+
+## I hope u guys got this
