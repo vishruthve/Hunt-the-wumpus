@@ -58,11 +58,16 @@ public class Main extends Base{
 	System.out.println(c.canTraverse(0, 0));
 	System.out.println(c.canTraverse(1, 3));
 	System.out.println(c.canTraverse(1, 0));
+<<<<<<< HEAD
 	javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 createAndShowGUI();
             }
         });		
 
+=======
+
+// Rayhan - visual design
+>>>>>>> 7d34a3ca42c11dd21910be9cfd25ae9c02a61a22
 	}
 }
