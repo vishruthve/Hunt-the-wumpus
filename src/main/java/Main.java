@@ -1,7 +1,26 @@
 // Aiden Whitlock
 
+import java.awt.Color;
+
+import javax.swing.*;
 //import java.util.*;
 public class Main extends Base{
+	private static void createAndShowGUI() {
+        //Create and set up the window.
+        JFrame frame = new JFrame("HelloWorldSwing");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+ 
+        //Add the ubiquitous "Hello World" label.
+        JLabel label = new JLabel("Hello World");
+		JPanel body = new JPanel();
+		body.setBorder(BorderFactory.createLineBorder(Color.black, 12));
+		body.add(label);
+        frame.getContentPane().add(body);
+ 
+        //Display the window.
+        frame.pack();
+        frame.setVisible(true);
+    }
 	public static void main(String[] args){
 		log("Main");
 		Cave c = new Cave(new int[][]{ 
@@ -39,7 +58,11 @@ public class Main extends Base{
 	System.out.println(c.canTraverse(0, 0));
 	System.out.println(c.canTraverse(1, 3));
 	System.out.println(c.canTraverse(1, 0));
-
+	javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                createAndShowGUI();
+            }
+        });		
 
 	}
 }
