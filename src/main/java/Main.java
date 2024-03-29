@@ -18,8 +18,18 @@ public class Main extends Base{
 		//m.drawHex(30,280,100);
 		///m.drawHex(10,310,100);
 		//m.drawHex(20,100,200);
-		m.drawHex(100,100,100);
-		m.drawHex(100,250,188);
+		for(int x=0,y=0;y<6;y+=++x/5,x%=5){
+			m.drawHex(50, x*75+50, y*88+(x%2==1?44:0)+50);
+		}
+		/*m.drawHex(50,50,50);
+		m.drawHex(50,125,94);
+		m.drawHex(50,200,50);
+		m.drawHex(50,50,138);
+		m.drawHex(50,125,182);
+		m.drawHex(50,200,138);
+		*/
+		//m.drawHex(50,225,94);
+		//m.drawHex(50,250,50);
 		//m.drawHex(100,175,145);
 		//m.drawHex(50,100,200);
 		frame.setSize(1600,800);  

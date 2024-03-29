@@ -19,13 +19,7 @@ public class Gui extends Canvas {
         //g.drawArc(30, 200, 40,50,90,60);  
         //g.fillArc(30, 130, 40,50,180,40);  
         g2.setColor(Color.GREEN);
-        final float dash1[] = {10.0f};
-        final BasicStroke dashed =
-        new BasicStroke(3.0f,
-                        BasicStroke.CAP_BUTT,
-                        BasicStroke.JOIN_MITER,
-                        10.0f, dash1, 0.0f);
-        g2.setStroke(dashed);
+        g2.setStroke(new BasicStroke(3.0f));
         if (p.length > 0)
         for(int i=0;i<p.length;i++){
             g2.fillPolygon(p[i]);
