@@ -1,29 +1,32 @@
 // Aiden Whitlock
 
 import java.awt.Color;
+import java.awt.Graphics;
 
 import javax.swing.*;
 //import java.util.*;
 public class Main extends Base{
+	public static Cave c;
 	private static void createAndShowGUI() {
-        //Create and set up the window.
         JFrame frame = new JFrame("HelloWorldSwing");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
- 
-        //Add the ubiquitous "Hello World" label.
-        JLabel label = new JLabel("Hello World");
-		JPanel body = new JPanel();
-		body.setBorder(BorderFactory.createLineBorder(Color.black, 12));
-		body.add(label);
-        frame.getContentPane().add(body);
- 
-        //Display the window.
-        frame.pack();
-        frame.setVisible(true);
+        frame.setVisible(true);	
+		Gui m=new Gui();  
+        frame.add(m);  
+		//m.drawHex(50,100,100);
+		//m.drawHex(50,200,100);
+		//m.drawHex(30,280,100);
+		///m.drawHex(10,310,100);
+		//m.drawHex(20,100,200);
+		m.drawHex(100,100,100);
+		m.drawHex(100,250,188);
+		//m.drawHex(100,175,145);
+		//m.drawHex(50,100,200);
+		frame.setSize(1600,800);  
     }
 	public static void main(String[] args){
 		log("Main");
-		Cave c = new Cave(new int[][]{ 
+		c = new Cave(new int[][]{ 
 			{0 ,  0,0,   1, 5, 9, 4,29,25,  7,0},
 			{1 ,  1,0,   2, 6, 5, 0,25,26,  7,1},
 			{2 ,  2,0,   3, 7, 6, 1,26,27,  7,0},
