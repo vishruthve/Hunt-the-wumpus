@@ -9,6 +9,7 @@ public class Gui extends Canvas {
     private Polygon[] p = new Polygon[0];
     private int[][][] l = new int[0][6][2];
     public void paint(Graphics g) {  
+        Graphics2D g2 = (Graphics2D) g;
         //g.drawString("Hello",40,40);  
         setBackground(Color.WHITE);  
         //g.fillRect(130, 30,100, 80);  
@@ -17,15 +18,22 @@ public class Gui extends Canvas {
         //g.fillOval(130,130,50, 60);  
         //g.drawArc(30, 200, 40,50,90,60);  
         //g.fillArc(30, 130, 40,50,180,40);  
-        g.setColor(Color.GREEN);
+        g2.setColor(Color.GREEN);
+        final float dash1[] = {10.0f};
+        final BasicStroke dashed =
+        new BasicStroke(3.0f,
+                        BasicStroke.CAP_BUTT,
+                        BasicStroke.JOIN_MITER,
+                        10.0f, dash1, 0.0f);
+        g2.setStroke(dashed);
         if (p.length > 0)
         for(int i=0;i<p.length;i++){
-            g.fillPolygon(p[i]);
+            g2.fillPolygon(p[i]);
         }
-        g.setColor(Color.BLACK);
+        g2.setColor(Color.BLACK);
         for(int i=0;i<l.length;i++){
             for(int j=0;j<6;j++){
-                g.drawLine(l[i][j][0], l[i][j][1], l[i][(j+1)%6][0], l[i][(j+1)%6][1]);
+                g2.drawLine(l[i][j][0], l[i][j][1], l[i][(j+1)%6][0], l[i][(j+1)%6][1]);
             }
         }
         
