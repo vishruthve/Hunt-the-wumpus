@@ -1,40 +1,12 @@
 //Rayhan 
 // 3/8/34
-import java.awt.*;
-import javax.swing.JFrame;
-import java.util.Arrays;
 
 
-public class Gui extends Canvas {
-    private Polygon[] p = new Polygon[0];
-    private int[][][] l = new int[0][6][2];
-    public void paint(Graphics g) {  
-        Graphics2D g2 = (Graphics2D) g;
-        //g.drawString("Hello",40,40);  
-        setBackground(Color.WHITE);  
-        //g.fillRect(130, 30,100, 80);  
-        //g.drawOval(30,130,50, 60);  
-        //setForeground(Color.BLUE);  
-        //g.fillOval(130,130,50, 60);  
-        //g.drawArc(30, 200, 40,50,90,60);  
-        //g.fillArc(30, 130, 40,50,180,40);  
-        g2.setColor(Color.GREEN);
-        g2.setStroke(new BasicStroke(3.0f));
-        if (p.length > 0)
-        for(int i=0;i<p.length;i++){
-            g2.fillPolygon(p[i]);
-        }
-        g2.setColor(Color.BLACK);
-        for(int i=0;i<l.length;i++){
-            for(int j=0;j<6;j++){
-                g2.drawLine(l[i][j][0], l[i][j][1], l[i][(j+1)%6][0], l[i][(j+1)%6][1]);
-            }
-        }
-        
-    }  
+public class Gui {
     public Gui(){
 
     }
+<<<<<<< HEAD
 
     public void drawHexAtGridPos(int x, int y){
         this.drawHex(50, x*75+50, y*88+(x%2==1?44:0)+50);
@@ -55,3 +27,6 @@ public class Gui extends Canvas {
 
     }
 }
+=======
+}
+>>>>>>> e11c6c6c9cb291e944e5dc0f01ac3dd8bd33b36c
