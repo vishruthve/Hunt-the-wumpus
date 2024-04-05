@@ -13,15 +13,16 @@ public class Main extends Base{
         frame.setVisible(true);	
 		Gui m=new Gui();  
         frame.add(m);  
+		c.render(m);
 		//m.drawHex(50,100,100);
 		//m.drawHex(50,200,100);
 		//m.drawHex(30,280,100);
 		///m.drawHex(10,310,100);
 		//m.drawHex(20,100,200);
-		for(int x=0,y=0;y<6;y+=++x/5,x%=5){
+		/*for(int x=0,y=0;y<6;y+=++x/5,x%=5){
 			m.drawHex(50, x*75+50, y*88+(x%2==1?44:0)+50);
 		}
-		/*m.drawHex(50,50,50);
+		m.drawHex(50,50,50);
 		m.drawHex(50,125,94);
 		m.drawHex(50,200,50);
 		m.drawHex(50,50,138);

@@ -23,6 +23,12 @@ public class Cave extends Base{
 		for(int i=0;i<CELLCOUNT;i++) cavern[i]=new Cell(data[i]);
 	}
 
+	public void render(Gui m){
+		for(Cell c: cavern){
+			c.render(m);
+		}
+	}
+
 	public boolean canTraverse(int id, int dir){
 		return cavern[id].doorState()[dir] && cavern[cavern[id].getNeighbors()[dir]].doorState()[(dir+3)%6];
 	}
@@ -64,6 +70,10 @@ public class Cave extends Base{
 			boolean[] doorsrotated = new boolean[6];
 			for(int i=0;i<6;i++) doorsrotated[i]=doors[(i-rotation)%6+((i-rotation)%6<0?6:0)];
 			return doorsrotated;
+		}
+
+		public void render(Gui m){
+			m.drawHexAtGridPos(XPOS, YPOS);
 		}
 
 		public String toString(){ 
