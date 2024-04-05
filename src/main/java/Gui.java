@@ -1,7 +1,4 @@
-//Rayhan 
-// 3/8/34
-
-
+//aiden
 import java.awt.*;
 import javax.swing.JFrame;
 import java.util.Arrays;
@@ -38,11 +35,9 @@ public class Gui extends Canvas {
 
     }
 
-
     public void drawHexAtGridPos(int x, int y){
         this.drawHex(50, x*75+50, y*88+(x%2==1?44:0)+50);
     }
-
     public void drawHex(int size, int x, int y){
         p = Arrays.copyOf(p, p.length+1);
         l = Arrays.copyOf(l, l.length+1);
@@ -59,4 +54,3 @@ public class Gui extends Canvas {
 
     }
 }
-
