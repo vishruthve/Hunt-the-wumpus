@@ -70,7 +70,6 @@ public class Cave extends Base{
 			return CELLID+" "+XPOS+" "+YPOS+" "+Arrays.toString(NEIGHBORIDS)+" "+SHAPE+" "+rotation;
 		}
 
-
 		
 
 		
