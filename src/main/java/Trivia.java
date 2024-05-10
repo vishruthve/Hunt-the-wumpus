@@ -2,7 +2,11 @@
 //Akshay
 
 public class Trivia {
-    public static void trivia() {
+    ArrayList<String> 
+    public Trivia() {
         //filler
+    }
+    public String getTrivia() {
+
     }
 }
