@@ -1,10 +1,43 @@
 // Aiden Whitlock
 
+import java.awt.Color;
+import java.awt.Graphics;
+
+import javax.swing.*;
 //import java.util.*;
 public class Main extends Base{
+	public static Cave c;
+	private static void createAndShowGUI() {
+        JFrame frame = new JFrame("HelloWorldSwing");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);	
+		Gui m=new Gui();  
+        frame.add(m);  
+		c.render(m);
+		//m.drawHex(50,100,100);
+		//m.drawHex(50,200,100);
+		//m.drawHex(30,280,100);
+		///m.drawHex(10,310,100);
+		//m.drawHex(20,100,200);
+		/*for(int x=0,y=0;y<6;y+=++x/5,x%=5){
+			m.drawHex(50, x*75+50, y*88+(x%2==1?44:0)+50);
+		}
+		m.drawHex(50,50,50);
+		m.drawHex(50,125,94);
+		m.drawHex(50,200,50);
+		m.drawHex(50,50,138);
+		m.drawHex(50,125,182);
+		m.drawHex(50,200,138);
+		*/
+		//m.drawHex(50,225,94);
+		//m.drawHex(50,250,50);
+		//m.drawHex(100,175,145);
+		//m.drawHex(50,100,200);
+		frame.setSize(1600,800);  
+    }
 	public static void main(String[] args){
 		log("Main");
-		Cave c = new Cave(new int[][]{ 
+		c = new Cave(new int[][]{ 
 			{0 ,  0,0,   1, 5, 9, 4,29,25,  7,0},
 			{1 ,  1,0,   2, 6, 5, 0,25,26,  7,1},
 			{2 ,  2,0,   3, 7, 6, 1,26,27,  7,0},
@@ -39,7 +72,11 @@ public class Main extends Base{
 	System.out.println(c.canTraverse(0, 0));
 	System.out.println(c.canTraverse(1, 3));
 	System.out.println(c.canTraverse(1, 0));
+	javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                createAndShowGUI();
+            }
+        });		
 
-// Rayhan - visual design
 	}
 }
