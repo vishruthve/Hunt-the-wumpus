@@ -45,8 +45,8 @@ public class Cave extends Base{
 
 		public Cell(int[] data){
 			CELLID = data[0];
-			XPOS   = data[1];
-			YPOS   = data[2];
+			XPOS   = data[2];
+			YPOS   = data[1];
 			NEIGHBORIDS = Arrays.copyOfRange(data, 3, 9);
 			SHAPE = data[9];
 			rotation = data[10];
