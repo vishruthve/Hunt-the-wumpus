@@ -51,6 +51,7 @@ public class Main extends Base{
 		System.out.println(c.canTraverse(0, 0));
 		System.out.println(c.canTraverse(1, 3));
 		System.out.println(c.canTraverse(1, 0));
+		c.rotateCell(17);
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				createAndShowGUI();
