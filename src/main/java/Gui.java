@@ -6,6 +6,8 @@ import Cave.*;
 
 import java.util.Arrays;
 
+import java.swing.JFrame;
+import java.awt.FlowLayout;
 
 public class Gui extends Canvas {
     private static final double e = Math.PI/3;
@@ -77,6 +79,7 @@ public class Gui extends Canvas {
             //g2.drawString("id: "+C.CELLID, r(x)-10, r(y)-10);
             //g2.drawString("shape: "+C.SHAPE, r(x)-10, r(y));
             //g2.drawString("rot: "+C.rotation, r(x)-10, r(y)+10);
+
 
 
         }
