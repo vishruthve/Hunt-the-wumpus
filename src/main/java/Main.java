@@ -2,56 +2,35 @@
 
 import java.awt.Color;
 import java.awt.Graphics;
-
 import javax.swing.*;
 //import java.util.*;
 public class Main extends Base{
 	public static Cave c;
 	private static void createAndShowGUI() {
-        JFrame frame = new JFrame("HelloWorldSwing");
+        JFrame frame = new JFrame("Wumpus Hunter");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);	
-		Gui m=new Gui();  
+		Gui m=new Gui(c);  
         frame.add(m);  
-		c.render(m);
-		//m.drawHex(50,100,100);
-		//m.drawHex(50,200,100);
-		//m.drawHex(30,280,100);
-		///m.drawHex(10,310,100);
-		//m.drawHex(20,100,200);
-		/*for(int x=0,y=0;y<6;y+=++x/5,x%=5){
-			m.drawHex(50, x*75+50, y*88+(x%2==1?44:0)+50);
-		}
-		m.drawHex(50,50,50);
-		m.drawHex(50,125,94);
-		m.drawHex(50,200,50);
-		m.drawHex(50,50,138);
-		m.drawHex(50,125,182);
-		m.drawHex(50,200,138);
-		*/
-		//m.drawHex(50,225,94);
-		//m.drawHex(50,250,50);
-		//m.drawHex(100,175,145);
-		//m.drawHex(50,100,200);
-		frame.setSize(1600,800);  
+		frame.setSize(800,800);  
     }
 	public static void main(String[] args){
 		log("Main");
 		c = new Cave(new int[][]{ 
-			{0 ,  0,0,   1, 5, 9, 4,29,25,  7,0},
-			{1 ,  1,0,   2, 6, 5, 0,25,26,  7,1},
-			{2 ,  2,0,   3, 7, 6, 1,26,27,  7,0},
-			{3 ,  3,0,   4, 8, 7, 2,27,28,  7,0},
-			{4 ,  4,0,   0, 9, 8, 3,28,29,  7,0},
-			{5 ,  0,1,   6,11,10, 9, 0, 1,  7,0},
-			{6 ,  1,1,   7,12,11, 5, 1, 2,  7,0},
-			{7 ,  2,1,   8,13,12, 6, 2, 3,  7,0},
-			{8 ,  3,1,   9,14,13, 7, 3, 4,  7,0},
-			{9 ,  4,1,   5,10,14, 8, 4, 0,  7,0},
-			{10,  0,2,  11,15,19,14, 9, 5,  7,0},
-			{11,  1,2,  12,16,15,10, 5, 6,  7,0},
-			{12,  2,2,  13,17,16,11, 6, 7,  7,0},
-			{13,  3,2,  14,18,17,12, 7, 8,  7,0},
+			{0 ,  0,0,   1, 5, 9, 4,29,25,  1,0},
+			{1 ,  1,0,   2, 6, 5, 0,25,26,  0,1},
+			{2 ,  2,0,   3, 7, 6, 1,26,27,  1,0},
+			{3 ,  3,0,   4, 8, 7, 2,27,28,  2,1},
+			{4 ,  4,0,   0, 9, 8, 3,28,29,  3,0},
+			{5 ,  0,1,   6,11,10, 9, 0, 1,  4,0},
+			{6 ,  1,1,   7,12,11, 5, 1, 2,  0,1},
+			{7 ,  2,1,   8,13,12, 6, 2, 3,  0,0},
+			{8 ,  3,1,   9,14,13, 7, 3, 4,  0,0},
+			{9 ,  4,1,   5,10,14, 8, 4, 0,  1,1},
+			{10,  0,2,  11,15,19,14, 9, 5,  2,1},
+			{11,  1,2,  12,16,15,10, 5, 6,  2,2},
+			{12,  2,2,  13,17,16,11, 6, 7,  2,2},
+			{13,  3,2,  14,18,17,12, 7, 8,  3,2},
 			{14,  4,2,  10,19,18,13, 8, 9,  7,0},
 			{15,  0,3,  16,21,20,19,10,11,  7,0},
 			{16,  1,3,  17,22,21,15,11,12,  7,0},
@@ -69,14 +48,14 @@ public class Main extends Base{
 			{28,  3,5,  29, 4, 3,27,23,24,  7,0},
 			{29,  4,5,  25, 0, 4,28,24,20,  7,0}
 		});
-	System.out.println(c.canTraverse(0, 0));
-	System.out.println(c.canTraverse(1, 3));
-	System.out.println(c.canTraverse(1, 0));
-	javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createAndShowGUI();
-            }
-        });		
+		System.out.println(c.canTraverse(0, 0));
+		System.out.println(c.canTraverse(1, 3));
+		System.out.println(c.canTraverse(1, 0));
+		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				createAndShowGUI();
+			}
+		});
 
 	}
 }
