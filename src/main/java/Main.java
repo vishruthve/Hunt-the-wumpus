@@ -9,10 +9,11 @@ public class Main extends Base{
 	private static void createAndShowGUI() {
         JFrame frame = new JFrame("Wumpus Hunter");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);	
+		frame.setSize(800,800);
 		Gui m=new Gui(c);  
-        frame.add(m);  
-		frame.setSize(800,800);  
+        frame.add(m);
+        frame.setVisible(true);	  
+		  
     }
 	public static void main(String[] args){
 		log("Main");
@@ -57,6 +58,7 @@ public class Main extends Base{
 				createAndShowGUI();
 			}
 		});
+
 
 	}
 }
