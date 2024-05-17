@@ -16,6 +16,7 @@ public class Trivia {
         Trivia_Answers.add("Japan");
         Trivia_Answers.add("Child of Deaf Adults");
         Trivia_Answers.add("World Wide Web");
+        //add more later 
     }
     public String getTrivia() {
         return Trivia_Questions.get(index); 
@@ -24,4 +25,13 @@ public class Trivia {
         if (Trivia_Answers.get(index).equals(guess)) numArrows++; 
         return numArrows;
     }
+
+    public void useArrows() {
+        numArrows --; 
+    }
+
+
+
+
+
 }
