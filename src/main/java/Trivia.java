@@ -34,8 +34,4 @@ public class Trivia {
         numArrows --; 
     }
 
-
-system.out.println("hey");
-
-
 }
