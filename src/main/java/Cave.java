@@ -19,6 +19,15 @@ public class Cave extends Base{
 
 	public Cave(int[][] data){
 		CELLCOUNT = data.length;
+		makeCaveFromInts(data);
+	}
+
+	public Cave(){
+		CELLCOUNT = 30;
+		makeFuckedUpCavern();
+	}
+
+	public void makeCaveFromInts(int[][] data){
 		cavern = new Cell[CELLCOUNT];
 		for(int i=0;i<CELLCOUNT;i++) cavern[i]=new Cell(data[i]);
 	}
@@ -34,6 +43,25 @@ public class Cave extends Base{
 
 	public void rotateCell(int t){
 		cavern[t].rotation++;
+	}
+
+
+	public void makeFuckedUpCavern(){
+		//down, downleft, upleft, up, upright, downright
+		int[][] b = new int[30][11];
+		for (int i=0;i<30;i++){
+			b[i] = new int[] {i, i%6, i/6, 
+
+				(i+6)%30, 
+				(i%2==1?(i+5)%30:(i%6==0?i+5:i-1)),
+				(i%2==1?i-1:(i%6==0?i+29:i+23)%30),
+				(i+24)%30,
+				0,
+				(i%2==0?i+1:(i%6==5?i+1:i+7)%30),
+				
+				(3*i)%8, i};
+		}
+		makeCaveFromInts(b);
 	}
 
 	

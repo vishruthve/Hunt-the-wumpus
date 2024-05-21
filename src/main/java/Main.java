@@ -9,7 +9,7 @@ public class Main extends Base{
 	private static void createAndShowGUI() {
         JFrame frame = new JFrame("Wumpus Hunter");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(800,800);
+		frame.setSize(800,1000);
 		Gui m=new Gui(c);  
         frame.add(m);
         frame.setVisible(true);	  
@@ -17,7 +17,7 @@ public class Main extends Base{
     }
 	public static void main(String[] args){
 		log("Main");
-		c = new Cave(new int[][]{ 
+		/*c = new Cave(new int[][]{ 
 			{0 ,  0,0,   1, 5, 9, 4,29,25,  1,0},
 			{1 ,  1,0,   2, 6, 5, 0,25,26,  0,1},
 			{2 ,  2,0,   3, 7, 6, 1,26,27,  1,0},
@@ -49,10 +49,12 @@ public class Main extends Base{
 			{28,  3,5,  29, 4, 3,27,23,24,  7,0},
 			{29,  4,5,  25, 0, 4,28,24,20,  7,0}
 		});
+		*/
+		c = new Cave();
 		System.out.println(c.canTraverse(0, 0));
 		System.out.println(c.canTraverse(1, 3));
 		System.out.println(c.canTraverse(1, 0));
-		c.rotateCell(17);
+		//c.rotateCell(17);
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				createAndShowGUI();

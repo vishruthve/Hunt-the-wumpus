@@ -11,7 +11,7 @@ import java.awt.FlowLayout;
 
 public class Gui extends Canvas {
     private static final double e = Math.PI/3;
-    private static final int size = 60, xOffset = 50, yOffset = 50;
+    private static final int size = 80, xOffset = 25, yOffset = 25;
     private static final double rot = 0;//Math.toRadians(-30.0);
     private static final Color hexBG = new Color(0x25a5ff);
     private static final Color path = new Color(0x25a5ff);
@@ -75,11 +75,13 @@ public class Gui extends Canvas {
                     r(y+(size-2)*sinCache[(j+1)%6])
                 );
             }
-            //g2.setColor(Color.BLACK);
-            //g2.drawString("id: "+C.CELLID, r(x)-10, r(y)-10);
-            //g2.drawString("shape: "+C.SHAPE, r(x)-10, r(y));
-            //g2.drawString("rot: "+C.rotation, r(x)-10, r(y)+10);
-
+            g2.setColor(Color.BLACK);
+            g2.drawString("pos:" + C.XPOS + ", " + C.YPOS, r(x)-10, r(y)-20);
+            g2.drawString("id: "+C.CELLID, r(x)-10, r(y)-10);
+            g2.drawString("shape: "+C.SHAPE, r(x)-10, r(y));
+            g2.drawString("rot: "+C.rotation, r(x)-10, r(y)+10);
+            g2.drawString(""+Arrays.toString(C.getNeighbors()), r(x)-60,r(y)+20);
+            g2.drawString(""+Arrays.toString(C.doorState()).replaceAll("true", "1").replaceAll("false","0"), r(x)-60,r(y)+30);
 
 
         }
