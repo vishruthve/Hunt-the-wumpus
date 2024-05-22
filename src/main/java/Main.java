@@ -12,10 +12,5 @@ public class Main extends Base{
 				g = new Gui(c);
 			}
 		});
-		while (true){
-			System.out.println("Update your balls");
-			c.rotateCell(s.nextInt());
-		}
-
 	}
 }

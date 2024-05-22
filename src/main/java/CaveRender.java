@@ -82,6 +82,10 @@ public class CaveRender extends Canvas {
 
 
         }
+        double x = c.getCavern()[c.playerPos].XPOS*1.5*size+size+xOffset;
+        double y = c.getCavern()[c.playerPos].YPOS*2*size*Math.sin(e)+(c.getCavern()[c.playerPos].XPOS%2==1?size*Math.sin(e):0)+size+yOffset;
+        g2.setColor(Color.MAGENTA);
+        g2.fillRect(r(x-5),r(y-5),10,10);
 
         
     }

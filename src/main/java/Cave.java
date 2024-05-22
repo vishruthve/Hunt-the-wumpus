@@ -7,6 +7,7 @@ public class Cave extends Base{
 	private final int CELLCOUNT;
 	private Cell[] cavern;
 	private CaveRender rend;
+	public int playerPos = 15;
 
 	public Cave(int[][] data){
 		CELLCOUNT = data.length;
@@ -39,6 +40,12 @@ public class Cave extends Base{
 		rend.repaint();
 	}
 
+	public void attemptMove(int dir){
+		if (canTraverse(playerPos, dir)){
+			playerPos = cavern[playerPos].getNeighbors()[dir];
+			rend.repaint();
+		}
+	}
 	public void makeDefaultUpCavern(){
 		//down, downleft, upleft, up, upright, downright
 		int[][] b = new int[30][11];
