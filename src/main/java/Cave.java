@@ -1,15 +1,6 @@
 // Aiden Whitlock
 
-
-// So this is all big and scary and kind of fucked up
-// And documenting this is going to nigh impossible
-// my plan is to keep all my fuckedup cell logic in here
-// and all you have to is ask "i am in cell X, can i go left?"
-// and it will tell you yes or no
-// etc
-// dont try to understand this. ill do my best to have it easy as pie
-
-
+// oh my god its finally done
 
 import java.util.*;	
 public class Cave extends Base{
@@ -27,7 +18,6 @@ public class Cave extends Base{
 		makeDefaultUpCavern();
 	}
 
-
 	public void linkRender(CaveRender c){
 		rend = c;
 	}
@@ -35,7 +25,6 @@ public class Cave extends Base{
 		cavern = new Cell[CELLCOUNT];
 		for(int i=0;i<CELLCOUNT;i++) cavern[i]=new Cell(data[i]);
 	}
-
 
 	public Cell[] getCavern(){
 		return cavern;
@@ -49,7 +38,6 @@ public class Cave extends Base{
 		cavern[t].rotation++;
 		rend.repaint();
 	}
-
 
 	public void makeDefaultUpCavern(){
 		//down, downleft, upleft, up, upright, downright
@@ -71,8 +59,6 @@ public class Cave extends Base{
 		}
 		makeCaveFromInts(b);
 	}
-
-	
 	
 	public class Cell{
 		public final int CELLID, XPOS, YPOS, SHAPE;
@@ -91,8 +77,6 @@ public class Cave extends Base{
 		public int[] getNeighbors(){
 			return NEIGHBORIDS;
 		}
-		
-		// TODO: make less fucking obscured
 
 		public boolean[] doorState(){
 			boolean[] doors = new boolean[6];
@@ -110,14 +94,5 @@ public class Cave extends Base{
 			for(int i=0;i<6;i++) doorsrotated[i]=doors[(i-rotation)%6+((i-rotation)%6<0?6:0)];
 			return doorsrotated;
 		}
-
-
-		public String toString(){ 
-			return CELLID+" "+XPOS+" "+YPOS+" "+Arrays.toString(NEIGHBORIDS)+" "+SHAPE+" "+rotation;
-		}
-
-		
-
-		
 	}
 }
