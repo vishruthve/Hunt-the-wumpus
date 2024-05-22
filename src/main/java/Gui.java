@@ -10,14 +10,15 @@ import java.swing.JFrame;
 import java.awt.FlowLayout;
 
 public class Gui extends Canvas {
+    private static final boolean debug = false;
     private static final double e = Math.PI/3;
-    private static final int size = 80, xOffset = 25, yOffset = 25;
+    private static final int size = 70, xOffset = 15, yOffset = 15;
     private static final double rot = 0;//Math.toRadians(-30.0);
-    private static final Color hexBG = new Color(0x25a5ff);
-    private static final Color path = new Color(0x25a5ff);
-    private static final Color open = new Color(0xbbbbbb);
-    private static final Color closed = new Color(0x111111);
-    private static final BasicStroke hexFill = new BasicStroke(1.0f);
+    private static final Color background = new Color(0xf1ffde);
+    private static final Color hexBG = new Color(0x15acde);
+    private static final Color path = new Color(0x1090e0);
+    private static final Color open = new Color(0x3b45bf);
+    private static final Color closed = new Color(0x312111);
     private static final BasicStroke hexLine = new BasicStroke(4.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER);
     private static final double[] sinCache = {
             Math.sin(e+rot),
@@ -43,10 +44,9 @@ public class Gui extends Canvas {
     private int r(double num){return (int)Math.round(num);}
 
     public void paint(Graphics g) {  
-        g2 = (Graphics2D) g; 
-        setBackground(Color.WHITE);   
+        g2 = (Graphics2D) g;    
+        setBackground(background);
         renderCave();
-        
         
     }  
     public Gui(Cave C){
@@ -60,11 +60,7 @@ public class Gui extends Canvas {
             Polygon p = new Polygon();
             for (int i = 0; i < 6; i++) p.addPoint(r(x+(size-1)*cosCache[i]),r(y+(size-1)*sinCache[i]));
             g2.setColor(hexBG);
-            g2.setStroke(hexFill);
             g2.fillPolygon(p);
-            //g2.setColor(Color.BLACK);
-            //g2.setStroke(new BasicStroke(2.5f, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_MITER));
-            //g2.drawPolygon(p);
             g2.setStroke(hexLine);
             for(int j=0;j<6;j++){
                 g2.setColor(c.canTraverse(C.CELLID, j)?path:(C.doorState()[j]?open:closed));
@@ -76,12 +72,16 @@ public class Gui extends Canvas {
                 );
             }
             g2.setColor(Color.BLACK);
-            g2.drawString("pos:" + C.XPOS + ", " + C.YPOS, r(x)-10, r(y)-20);
             g2.drawString("id: "+C.CELLID, r(x)-10, r(y)-10);
-            g2.drawString("shape: "+C.SHAPE, r(x)-10, r(y));
-            g2.drawString("rot: "+C.rotation, r(x)-10, r(y)+10);
-            g2.drawString(""+Arrays.toString(C.getNeighbors()), r(x)-60,r(y)+20);
-            g2.drawString(""+Arrays.toString(C.doorState()).replaceAll("true", "1").replaceAll("false","0"), r(x)-60,r(y)+30);
+            if (debug){
+                g2.setColor(Color.BLACK);
+                g2.drawString("pos:" + C.XPOS + ", " + C.YPOS, r(x)-10, r(y)-20);
+                g2.drawString("id: "+C.CELLID, r(x)-10, r(y)-10);
+                g2.drawString("shape: "+C.SHAPE, r(x)-10, r(y));
+                g2.drawString("rot: "+C.rotation, r(x)-10, r(y)+10);
+                g2.drawString(""+Arrays.toString(C.getNeighbors()), r(x)-60,r(y)+20);
+                g2.drawString(""+Arrays.toString(C.doorState()).replaceAll("true", "1").replaceAll("false","0"), r(x)-60,r(y)+30);
+            }
 
 
         }

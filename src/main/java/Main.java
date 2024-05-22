@@ -3,14 +3,17 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.*;
+import java.util.Scanner;
 //import java.util.*;
 public class Main extends Base{
+	public static Scanner s = new Scanner(System.in);
 	public static Cave c;
 	private static void createAndShowGUI() {
         JFrame frame = new JFrame("Wumpus Hunter");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(800,1000);
 		Gui m=new Gui(c);  
+		c.linkGui(m);
         frame.add(m);
         frame.setVisible(true);	  
 		  
@@ -54,13 +57,15 @@ public class Main extends Base{
 		System.out.println(c.canTraverse(0, 0));
 		System.out.println(c.canTraverse(1, 3));
 		System.out.println(c.canTraverse(1, 0));
-		//c.rotateCell(17);
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				createAndShowGUI();
 			}
 		});
-
+		System.out.println("rotate which cell?");
+		while(true){
+			c.rotateCell(s.nextInt());
+		}
 
 	}
 }
