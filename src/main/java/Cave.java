@@ -35,8 +35,8 @@ public class Cave extends Base{
 		return cavern[id].doorState()[dir] && cavern[cavern[id].getNeighbors()[dir]].doorState()[(dir+3)%6];
 	}
 
-	public void rotateCell(int t){
-		cavern[t].rotation++;
+	public void rotateCell(int t, int a){
+		cavern[t].rotation += a;
 		rend.repaint();
 	}
 

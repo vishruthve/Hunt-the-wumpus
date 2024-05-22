@@ -2,21 +2,22 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.border.Border;
 
 public class Gui extends JFrame implements ActionListener{
 	private CaveRender cav;  
 	private Cave C;
 	private JSpinner target;
-	private JButton rotate = new JButton("Rotate");
+	private JButton rotate = new JButton("↶");
+	private JButton rotate2 = new JButton("↷");
 	private JPanel panel = new JPanel();
 	private JPanel controls = new JPanel();
+	private String[] labs = {"↓","↙","↖","↑","↗","↘"};
 	private String[] dirs = {"S","SW","NW","N","NE","SE"};
 	private char[] keys = {'s','a','q','w','e','d'};
 	private JButton[] hexButtons = new JButton[6];
 	private JPanel hexPanel = new JPanel();
-	private JLabel rotcells = new JLabel("Cell rotation");
-	private JLabel moveGuide = new JLabel("(Hold ALT to move)");
+	private JLabel rotcells = new JLabel("Rotate Cell");
+	private JLabel moveGuide = new JLabel("(Alt+QWEASD)");
 	private GridBagConstraints con = new GridBagConstraints();
 
 	public Gui(Cave c){
@@ -30,30 +31,38 @@ public class Gui extends JFrame implements ActionListener{
 		c.linkRender(cav);
 		controls.setLayout(new BoxLayout(controls, BoxLayout.LINE_AXIS));
 		controls.setBorder(BorderFactory.createBevelBorder(0));
-		rotate.setActionCommand("rotate");
-		rotcells.setLabelFor(rotate);
+		rotate.setActionCommand("rcw");
+		rotate2.setActionCommand("rccw");
+		rotcells.setLabelFor(target);
 		JPanel rotcont = new JPanel(new GridBagLayout());
-		con.gridwidth=2;
+		con.gridwidth=3;
 		rotcont.add(rotcells, con);
 		con.gridwidth=1;
 		con.gridy=1;
 		rotcont.add(rotate,con);
 		con.gridx=1;
 		rotcont.add(target,con);
+		con.gridx=2;
+		rotcont.add(rotate2,con);
 		rotcells.setOpaque(true);
+		rotcont.setBorder(BorderFactory.createBevelBorder(0));
 		controls.add(rotcont);
+		controls.add(Box.createHorizontalStrut(860));
 		for (int i=0;i<6;i++){
-			hexButtons[i] = new JButton(dirs[i]);
+			hexButtons[i] = new JButton(labs[i]);
 			hexButtons[i].setActionCommand(dirs[i]);
 			hexButtons[i].addActionListener(this);
 			hexButtons[i].setEnabled(C.canTraverse(C.playerPos, i));
 			hexButtons[i].setMnemonic(keys[i]);
+			hexButtons[i].setMargin(new Insets(1, 1, 1, 1));
 		}
 		hexPanel.setLayout(new GridBagLayout());
 		con.gridwidth=3;
 		con.gridx=0;
 		con.gridy=0;
 		hexPanel.add(moveGuide,con);
+		con.weightx=1;
+		con.fill=2; 
 		con.gridwidth=1;
 		con.gridx=0;
 		con.gridy=1;
@@ -74,11 +83,13 @@ public class Gui extends JFrame implements ActionListener{
 		con.gridy=2;
 		hexPanel.add(hexButtons[5],con);
 		controls.add(hexPanel);
+		hexPanel.setBorder(BorderFactory.createBevelBorder(0));
 
 		Container contentPane = getContentPane();
 		contentPane.add(cav, BorderLayout.NORTH);
 		contentPane.add(controls, BorderLayout.SOUTH);
 		rotate.addActionListener(this);
+		rotate2.addActionListener(this);
 		
 
 		pack();
@@ -86,9 +97,6 @@ public class Gui extends JFrame implements ActionListener{
 
 	}
 	public void actionPerformed(ActionEvent e) {
-        if ("rotate".equals(e.getActionCommand())) {
-            C.rotateCell((int)target.getValue());
-        }
 		if (e.getActionCommand()!=null){
 			switch (e.getActionCommand()){
 				case "N": C.attemptMove(3); break;
@@ -97,6 +105,8 @@ public class Gui extends JFrame implements ActionListener{
 				case "NE": C.attemptMove(4); break;
 				case "SW": C.attemptMove(1); break;
 				case "SE": C.attemptMove(5); break;
+				case "rcw": C.rotateCell((int)target.getValue(),-1); break;
+				case "rccw": C.rotateCell((int)target.getValue(), 1); break;
 			}
 		}
 		for(int i=0;i<6;i++){
