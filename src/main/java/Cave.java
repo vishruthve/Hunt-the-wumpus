@@ -11,11 +11,9 @@
 
 
 
-
 import java.util.*;	
 public class Cave extends Base{
 	private final int CELLCOUNT;
-	private Gui g;
 	private Cell[] cavern;
 
 	public Cave(int[][] data){
@@ -25,12 +23,9 @@ public class Cave extends Base{
 
 	public Cave(){
 		CELLCOUNT = 30;
-		makeFuckedUpCavern();
+		makeDefaultUpCavern();
 	}
 
-	public void linkGui(Gui G){
-		g = G;
-	}
 
 	public void makeCaveFromInts(int[][] data){
 		cavern = new Cell[CELLCOUNT];
@@ -48,11 +43,10 @@ public class Cave extends Base{
 
 	public void rotateCell(int t){
 		cavern[t].rotation++;
-		g.repaint();
 	}
 
 
-	public void makeFuckedUpCavern(){
+	public void makeDefaultUpCavern(){
 		//down, downleft, upleft, up, upright, downright
 		int[][] b = new int[30][11];
 		for (int i=0;i<30;i++){
