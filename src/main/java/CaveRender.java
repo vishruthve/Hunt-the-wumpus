@@ -5,9 +5,9 @@ import java.util.Arrays;
 public class CaveRender extends Canvas {
     private static final boolean debug = false;
     private static final double e = Math.PI/3;
-    private static final int size = 60, xOffset = 5, yOffset = 5;
+    private static final int size = 60, xOffset = 1, yOffset = -7;
     private static final double rot = 0;//Math.toRadians(-30.0);
-    private static final Color background = new Color(0xf1ffde);
+    private static final Color background = new Color(0xc1eebe);
     private static final Color hexBG = new Color(0x15acde);
     private static final Color path = new Color(0x1090e0);
     private static final Color open = new Color(0x3b45bf);
@@ -47,9 +47,8 @@ public class CaveRender extends Canvas {
         c=C;
     }
     public Dimension getPreferredSize() {
-        return new Dimension(600,600);
+        return new Dimension(1111,600);
     }
-
     public void renderCave(){
         for(Cave.Cell C:c.getCavern()){
             double x = C.XPOS*1.5*size+size+xOffset;
