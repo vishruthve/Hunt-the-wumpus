@@ -1,7 +1,5 @@
 //aiden
 import java.awt.*;
-
-
 import java.util.Arrays;
 
 public class CaveRender extends Canvas {
@@ -47,6 +45,9 @@ public class CaveRender extends Canvas {
     }  
     public CaveRender(Cave C){
         c=C;
+    }
+    public Dimension getPreferredSize() {
+        return new Dimension(600,600);
     }
 
     public void renderCave(){
