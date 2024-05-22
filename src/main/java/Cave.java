@@ -15,6 +15,7 @@ import java.util.*;
 public class Cave extends Base{
 	private final int CELLCOUNT;
 	private Cell[] cavern;
+	private CaveRender rend;
 
 	public Cave(int[][] data){
 		CELLCOUNT = data.length;
@@ -27,6 +28,9 @@ public class Cave extends Base{
 	}
 
 
+	public void linkRender(CaveRender c){
+		rend = c;
+	}
 	public void makeCaveFromInts(int[][] data){
 		cavern = new Cell[CELLCOUNT];
 		for(int i=0;i<CELLCOUNT;i++) cavern[i]=new Cell(data[i]);
@@ -43,6 +47,7 @@ public class Cave extends Base{
 
 	public void rotateCell(int t){
 		cavern[t].rotation++;
+		rend.repaint();
 	}
 
 
