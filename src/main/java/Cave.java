@@ -7,7 +7,7 @@ public class Cave extends Base{
 	public final int CELLCOUNT, WIDTH=12, HEIGHT=5;
 	private Cell[] cavern;
 	private CaveRender rend;
-	public int playerPos = 15;
+	public Player player;
 
 	public Cave(int[][] data){
 		CELLCOUNT = data.length;
@@ -15,6 +15,8 @@ public class Cave extends Base{
 	}
 
 	public Cave(){
+		player = new Player(false);
+		player.setPosition(15);
 		CELLCOUNT = WIDTH*HEIGHT;
 		makeDefaultUpCavern();
 	}
