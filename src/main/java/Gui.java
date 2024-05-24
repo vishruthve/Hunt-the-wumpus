@@ -65,8 +65,8 @@ public class Gui extends JFrame implements ActionListener{
 			hexButtons[i] = new JButton(labs[i]);
 			hexButtons[i].setActionCommand(dirs[i]);
 			hexButtons[i].addActionListener(this);
-			hexButtons[i].setEnabled(C.canTraverse(C.playerPos, i));
-			hexButtons[i].setBackground(C.canTraverse(C.playerPos, i)?Color.WHITE:Color.GRAY);
+			hexButtons[i].setEnabled(C.canTraverse(C.player.getPosition(), i));
+			hexButtons[i].setBackground(C.canTraverse(C.player.getPosition(), i)?Color.WHITE:Color.GRAY);
 			hexButtons[i].setMnemonic(keys[i]);
 			hexButtons[i].setMargin(new Insets(1, 1, 1, 1));
 		}
@@ -126,8 +126,8 @@ public class Gui extends JFrame implements ActionListener{
 			}
 		}
 		for(int i=0;i<6;i++){
-			hexButtons[i].setEnabled(C.canTraverse(C.playerPos, i));
-			hexButtons[i].setBackground(C.canTraverse(C.playerPos, i)?Color.WHITE:Color.GRAY);
+			hexButtons[i].setEnabled(C.canTraverse(C.player.getPosition(), i));
+			hexButtons[i].setBackground(C.canTraverse(C.player.getPosition(), i)?Color.WHITE:Color.GRAY);
 		}
 
 

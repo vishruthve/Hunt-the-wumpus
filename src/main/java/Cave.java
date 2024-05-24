@@ -44,8 +44,8 @@ public class Cave extends Base{
 	}
 
 	public void attemptMove(int dir){
-		if (canTraverse(playerPos, dir)){
-			playerPos = cavern[playerPos].getNeighbors()[dir];
+		if (canTraverse(player.getPosition(), dir)){
+			player.setPosition(cavern[player.getPosition()].getNeighbors()[dir]);
 			rend.repaint();
 		}
 	}
