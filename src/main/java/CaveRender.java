@@ -1,17 +1,19 @@
 //aiden
 import java.awt.*;
 import java.util.Arrays;
+import java.io.*;
 
-public class CaveRender extends Canvas {
+public class CaveRender extends Canvas{
     private static final boolean debug = false;
     private static final double e = Math.PI/3;
     private static final int size = 60, xOffset = 1, yOffset = -7;
     private static final double rot = 0;//Math.toRadians(-30.0);
     private static final Color background = new Color(0xc1eebe);
     private static final Color hexBG = new Color(0x15acde);
-    private static final Color path = new Color(0x1090e0);
-    private static final Color open = new Color(0x3b45bf);
-    private static final Color closed = new Color(0x312111);
+    private static final Color path = new Color(0x129be0);
+    private static final Color closed = new Color(0x112121);
+    private static final Color open = new Color(0x0a5bb2);
+    private static Font tet;
     private static final BasicStroke hexLine = new BasicStroke(4.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER);
     private static final double[] sinCache = {
             Math.sin(e+rot),
@@ -36,15 +38,42 @@ public class CaveRender extends Canvas {
 
     private int r(double num){return (int)Math.round(num);}
 
-    public void paint(Graphics g) { 
+    public void paint(Graphics g){ 
 
-        g2 = (Graphics2D) g;    
+        g2 = (Graphics2D) g;
         setBackground(background);
         renderCave();
+        renderPlayer();
         
     }  
+    public void renderPlayer(){
+        double x = c.getCavern()[c.playerPos].XPOS*1.5*size+size+xOffset;
+        double y = c.getCavern()[c.playerPos].YPOS*2*size*Math.sin(e)+(c.getCavern()[c.playerPos].XPOS%2==1?size*Math.sin(e):0)+size+yOffset;
+        Polygon p = new Polygon();
+        for (int i = 0; i < 6; i++) p.addPoint(r(x+(size-17)*cosCache[i]),r(y+(size-17)*sinCache[i]));
+        g2.setColor(Color.CYAN);
+        g2.setStroke(new BasicStroke(12.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+        g2.drawPolygon(p);
+        g2.setColor(Color.LIGHT_GRAY);
+        g2.setStroke(new BasicStroke(5.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+        for (int z=0; z<6;z++){
+            if (c.canTraverse(c.playerPos, z)){
+            x = c.getCavern()[c.getCavern()[c.playerPos].NEIGHBORIDS[z]].XPOS*1.5*size+size+xOffset;
+            y = c.getCavern()[c.getCavern()[c.playerPos].NEIGHBORIDS[z]].YPOS*2*size*Math.sin(e)+(c.getCavern()[c.getCavern()[c.playerPos].NEIGHBORIDS[z]].XPOS%2==1?size*Math.sin(e):0)+size+yOffset;
+            p = new Polygon();
+            for (int i = 0; i < 6; i++) p.addPoint(r(x+(size-17)*cosCache[i]),r(y+(size-17)*sinCache[i]));
+            g2.drawPolygon(p);
+            }
+        }
+    }
     public CaveRender(Cave C){
         c=C;
+        try {
+            tet = Font.createFont(Font.TRUETYPE_FONT, new File("src/main/java/font/LEDCalculator.ttf"));
+            tet = tet.deriveFont(Font.BOLD, 24.0f);
+        } catch(Exception e){
+            System.out.println(e);
+        }
     }
     public Dimension getPreferredSize() {
         return new Dimension(1111,600);
@@ -68,7 +97,8 @@ public class CaveRender extends Canvas {
                 );
             }
             g2.setColor(Color.BLACK);
-            g2.drawString(""+C.CELLID, r(x)-10, r(y)-10);
+            g2.setFont(tet);
+            g2.drawString((C.CELLID<10?"0":"")+C.CELLID, r(x)-15, r(y)+6);
             if (debug){
                 g2.setColor(Color.BLACK);
                 g2.drawString("pos:" + C.XPOS + ", " + C.YPOS, r(x)-10, r(y)-20);
@@ -81,10 +111,7 @@ public class CaveRender extends Canvas {
 
 
         }
-        double x = c.getCavern()[c.playerPos].XPOS*1.5*size+size+xOffset;
-        double y = c.getCavern()[c.playerPos].YPOS*2*size*Math.sin(e)+(c.getCavern()[c.playerPos].XPOS%2==1?size*Math.sin(e):0)+size+yOffset;
-        g2.setColor(Color.MAGENTA);
-        g2.fillRect(r(x-5),r(y-5),10,10);
+        
 
         
     }

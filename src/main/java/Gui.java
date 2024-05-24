@@ -2,6 +2,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.io.*;
 
 public class Gui extends JFrame implements ActionListener{
 	private CaveRender cav;  
@@ -19,6 +20,7 @@ public class Gui extends JFrame implements ActionListener{
 	private JLabel rotcells = new JLabel("Rotate Cell");
 	private JLabel moveGuide = new JLabel("(Alt+QWEASD)");
 	private GridBagConstraints con = new GridBagConstraints();
+	private Font tet;
 
 	public Gui(Cave c){
 		super("Wumpus Hunter");
@@ -26,7 +28,14 @@ public class Gui extends JFrame implements ActionListener{
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 		add(panel);
 		C = c;
+		try {
+            tet = Font.createFont(Font.TRUETYPE_FONT, new File("src/main/java/font/FSEX300.ttf"));
+            tet = tet.deriveFont(Font.PLAIN, 18.0f);
+        } catch(Exception e){
+            System.out.println(e);
+        }
 		target = new JSpinner(new SpinnerNumberModel(15,0,C.CELLCOUNT-1,1));
+		target.setFont(tet);
 		cav = new CaveRender(C);
 		c.linkRender(cav);
 		controls.setLayout(new BoxLayout(controls, BoxLayout.LINE_AXIS));
@@ -36,6 +45,7 @@ public class Gui extends JFrame implements ActionListener{
 		rotcells.setLabelFor(target);
 		JPanel rotcont = new JPanel(new GridBagLayout());
 		con.gridwidth=3;
+		con.fill = con.VERTICAL;
 		rotcont.add(rotcells, con);
 		con.gridwidth=1;
 		con.gridy=1;
@@ -44,6 +54,9 @@ public class Gui extends JFrame implements ActionListener{
 		rotcont.add(target,con);
 		con.gridx=2;
 		rotcont.add(rotate2,con);
+		rotate.setBackground(Color.WHITE);
+		rotate2.setBackground(Color.WHITE);
+		target.setBackground(Color.WHITE);
 		rotcells.setOpaque(true);
 		rotcont.setBorder(BorderFactory.createBevelBorder(0));
 		controls.add(rotcont);
@@ -53,6 +66,7 @@ public class Gui extends JFrame implements ActionListener{
 			hexButtons[i].setActionCommand(dirs[i]);
 			hexButtons[i].addActionListener(this);
 			hexButtons[i].setEnabled(C.canTraverse(C.playerPos, i));
+			hexButtons[i].setBackground(C.canTraverse(C.playerPos, i)?Color.WHITE:Color.GRAY);
 			hexButtons[i].setMnemonic(keys[i]);
 			hexButtons[i].setMargin(new Insets(1, 1, 1, 1));
 		}
@@ -90,6 +104,8 @@ public class Gui extends JFrame implements ActionListener{
 		contentPane.add(controls, BorderLayout.SOUTH);
 		rotate.addActionListener(this);
 		rotate2.addActionListener(this);
+		rotcells.setFont(tet);
+		moveGuide.setFont(tet);
 		
 
 		pack();
@@ -111,6 +127,7 @@ public class Gui extends JFrame implements ActionListener{
 		}
 		for(int i=0;i<6;i++){
 			hexButtons[i].setEnabled(C.canTraverse(C.playerPos, i));
+			hexButtons[i].setBackground(C.canTraverse(C.playerPos, i)?Color.WHITE:Color.GRAY);
 		}
 
 

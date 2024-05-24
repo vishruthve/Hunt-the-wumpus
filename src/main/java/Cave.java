@@ -4,7 +4,7 @@
 
 import java.util.*;	
 public class Cave extends Base{
-	public final int CELLCOUNT;
+	public final int CELLCOUNT, WIDTH=12, HEIGHT=5;
 	private Cell[] cavern;
 	private CaveRender rend;
 	public int playerPos = 15;
@@ -15,7 +15,7 @@ public class Cave extends Base{
 	}
 
 	public Cave(){
-		CELLCOUNT = 5*12;
+		CELLCOUNT = WIDTH*HEIGHT;
 		makeDefaultUpCavern();
 	}
 
@@ -34,6 +34,7 @@ public class Cave extends Base{
 	public boolean canTraverse(int id, int dir){
 		return cavern[id].doorState()[dir] && cavern[cavern[id].getNeighbors()[dir]].doorState()[(dir+3)%6];
 	}
+
 
 	public void rotateCell(int t, int a){
 		cavern[t].rotation += a;
