@@ -39,7 +39,6 @@ public class CaveRender extends Canvas{
     private int r(double num){return (int)Math.round(num);}
 
     public void paint(Graphics g){ 
-
         g2 = (Graphics2D) g;
         //setBackground(background);
         renderCave();
@@ -51,14 +50,13 @@ public class CaveRender extends Canvas{
         double y = c.getCavern()[c.player.getPosition()].YPOS*2*size*Math.sin(e)+(c.getCavern()[c.player.getPosition()].XPOS%2==1?size*Math.sin(e):0)+size+yOffset;
         Polygon p = new Polygon();
         for (int i = 0; i < 6; i++) p.addPoint(r(x+(size-17)*cosCache[i]),r(y+(size-17)*sinCache[i]));
-        g2.setXORMode(background);
         g2.setColor(Color.CYAN);
         g2.setStroke(new BasicStroke(12.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
         g2.drawPolygon(p);
         g2.setColor(Color.LIGHT_GRAY);
         g2.setStroke(new BasicStroke(5.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
         for (int z=0; z<6;z++){
-            if (c.canTraverse(c.playerPos, z)){
+            if (c.canTraverse(c.player.getPosition(), z)){
             x = c.getCavern()[c.getCavern()[c.player.getPosition()].NEIGHBORIDS[z]].XPOS*1.5*size+size+xOffset;
             y = c.getCavern()[c.getCavern()[c.player.getPosition()].NEIGHBORIDS[z]].YPOS*2*size*Math.sin(e)+(c.getCavern()[c.getCavern()[c.player.getPosition()].NEIGHBORIDS[z]].XPOS%2==1?size*Math.sin(e):0)+size+yOffset;
             p = new Polygon();
@@ -66,7 +64,6 @@ public class CaveRender extends Canvas{
             g2.drawPolygon(p);
             }
         }
-        g2.setPaintMode();
     }
     public CaveRender(Cave C){
         c=C;
