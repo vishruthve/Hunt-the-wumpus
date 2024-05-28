@@ -15,6 +15,7 @@ public class Trivia {
         Trivia_Questions.add("In what country did the first Starbucks open outside of North America?");
         Trivia_Questions.add("What does CODA stand for?");
         Trivia_Questions.add("In a website browser address bar, what does “www” stand for?");
+        
         Trivia_Answers.add("Japan");
         Trivia_Answers.add("Child of Deaf Adults");
         Trivia_Answers.add("World Wide Web");
@@ -33,5 +34,6 @@ public class Trivia {
     public void useArrows() {
         numArrows --; 
     }
+
 
 }
