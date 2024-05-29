@@ -4,8 +4,8 @@ public class Player{
     private int num_arrows; 
 
     
-    public Player (boolean death) {
-        this.death = death; 
+    public Player () {
+        ; 
     }
    
     public int getPosition(){ return playerPosition; }
