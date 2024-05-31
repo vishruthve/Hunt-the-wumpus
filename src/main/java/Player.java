@@ -4,8 +4,8 @@ public class Player{
     private int num_arrows; 
 
     
-    public Player () {
-        ; 
+    public Player() {
+        //hi
     }
    
     public int getPosition(){ return playerPosition; }

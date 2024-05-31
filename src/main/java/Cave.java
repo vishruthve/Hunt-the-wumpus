@@ -2,9 +2,11 @@
 
 // oh my god its finally done
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;	
 public class Cave extends Base{
-	public final int CELLCOUNT, WIDTH=12, HEIGHT=5;
+	public int CELLCOUNT, WIDTH=12, HEIGHT=5;
 	private Cell[] cavern;
 	private CaveRender rend;
 	public Player player;
@@ -15,10 +17,17 @@ public class Cave extends Base{
 	}
 
 	public Cave(){
-		player = new Player(false);
+		player = new Player();
 		player.setPosition(15);
 		CELLCOUNT = WIDTH*HEIGHT;
 		makeDefaultUpCavern();
+	}
+
+	public Cave(String path) throws FileNotFoundException{
+		cavern = Parser.parseCave(new File("src/main/java/cave/"+path+".txt"));
+		CELLCOUNT = cavern.length;
+		player = new Player();
+		player.setPosition(cavern.length/2);
 	}
 
 	public void linkRender(CaveRender c){
@@ -49,14 +58,15 @@ public class Cave extends Base{
 			rend.repaint();
 		}
 	}
+
 	public void makeDefaultUpCavern(){
 		//down, downleft, upleft, up, upright, downright
 		int width = 12;
 		int height = 5;
 		int siz = width*height;
-		int[][] b = new int[siz][11];
+		int[][] b = new int[siz][10];
 		for (int i=0;i<siz;i++){
-			b[i] = new int[] {i, i%width, i/width, 
+			b[i] = new int[] {i%width, i/width, 
 
 				(i+width)%siz, 
 				(i%2==1?(i+width-1)%siz:(i%width==0?i+width-1:i-1)),
@@ -65,7 +75,7 @@ public class Cave extends Base{
 				(i%2==0?(i+siz-width+1)%siz:(i%width==width-1?i-width+1:i+1)),
 				(i%2==0?i+1:(i%width==width-1?i+1:i+width+1)%siz),
 				
-				(3*i+i/9)%2+6, i%2+i%3+i%4+i%5+i%6+i%7+i%8+i%9+i%10
+				(3*i+i/9)%2+6, i+i%2+i%3+i%4+i%5+i%6+i%7+i%8+i%9
 			};
 			System.out.println(Arrays.toString(b[i]));
 
@@ -73,18 +83,19 @@ public class Cave extends Base{
 		makeCaveFromInts(b);
 	}
 	
-	public class Cell{
+	public static class Cell{
 		public final int CELLID, XPOS, YPOS, SHAPE;
 		public final int[] NEIGHBORIDS;
+		public static int INSTANCES = 0;
 		public int rotation;
 
 		public Cell(int[] data){
-			CELLID = data[0];
-			XPOS   = data[1];
-			YPOS   = data[2];
-			NEIGHBORIDS = Arrays.copyOfRange(data, 3, 9);
-			SHAPE = data[9];
-			rotation = data[10];
+			CELLID = INSTANCES++;
+			XPOS   = data[0];
+			YPOS   = data[1];
+			NEIGHBORIDS = Arrays.copyOfRange(data, 2, 8);
+			SHAPE = data[8];
+			rotation = data[9];
 		}
 
 		public int[] getNeighbors(){

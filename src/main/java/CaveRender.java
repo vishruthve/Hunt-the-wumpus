@@ -35,14 +35,14 @@ public class CaveRender extends Canvas{
     
     private Cave c;
     private Graphics2D g2;
-
     private int r(double num){return (int)Math.round(num);}
 
     public void paint(Graphics g){ 
         g2 = (Graphics2D) g;
-        //setBackground(background);
+        setBackground(background);
         renderCave();
         renderPlayer();
+        //setIgnoreRepaint(true);
         
     }  
     public void renderPlayer(){

@@ -34,10 +34,10 @@ public class Gui extends JFrame implements ActionListener{
         } catch(Exception e){
             System.out.println(e);
         }
-		target = new JSpinner(new SpinnerNumberModel(15,0,C.CELLCOUNT-1,1));
+		target = new JSpinner(new SpinnerNumberModel(C.player.getPosition(),0,C.CELLCOUNT-1,1));
 		target.setFont(tet);
 		cav = new CaveRender(C);
-		c.linkRender(cav);
+		C.linkRender(cav);
 		controls.setLayout(new BoxLayout(controls, BoxLayout.LINE_AXIS));
 		controls.setBorder(BorderFactory.createBevelBorder(0));
 		rotate.setActionCommand("rcw");
@@ -115,12 +115,12 @@ public class Gui extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand()!=null){
 			switch (e.getActionCommand()){
-				case "N": C.attemptMove(3); break;
-				case "S": C.attemptMove(0); break;
-				case "NW": C.attemptMove(2); break;
-				case "NE": C.attemptMove(4); break;
-				case "SW": C.attemptMove(1); break;
-				case "SE": C.attemptMove(5); break;
+				case "N": C.attemptMove(3); target.setValue((Integer) C.player.getPosition()); break;
+				case "S": C.attemptMove(0); target.setValue((Integer) C.player.getPosition()); break;
+				case "NW": C.attemptMove(2); target.setValue((Integer) C.player.getPosition()); break;
+				case "NE": C.attemptMove(4); target.setValue((Integer) C.player.getPosition()); break;
+				case "SW": C.attemptMove(1); target.setValue((Integer) C.player.getPosition()); break;
+				case "SE": C.attemptMove(5); target.setValue((Integer) C.player.getPosition()); break;
 				case "rcw": C.rotateCell((int)target.getValue(),-1); break;
 				case "rccw": C.rotateCell((int)target.getValue(), 1); break;
 			}
