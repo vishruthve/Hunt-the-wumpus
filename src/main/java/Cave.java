@@ -58,6 +58,7 @@ public class Cave extends Base{
 			rend.repaint();
 		}
 	}
+
 	public void makeDefaultUpCavern(){
 		//down, downleft, upleft, up, upright, downright
 		int width = 12;

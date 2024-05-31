@@ -39,7 +39,7 @@ public class CaveRender extends Canvas{
 
     public void paint(Graphics g){ 
         g2 = (Graphics2D) g;
-        //setBackground(background);
+        setBackground(background);
         renderCave();
         renderPlayer();
         //setIgnoreRepaint(true);

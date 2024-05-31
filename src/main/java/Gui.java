@@ -115,12 +115,12 @@ public class Gui extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand()!=null){
 			switch (e.getActionCommand()){
-				case "N": C.attemptMove(3); break;
-				case "S": C.attemptMove(0); break;
-				case "NW": C.attemptMove(2); break;
-				case "NE": C.attemptMove(4); break;
-				case "SW": C.attemptMove(1); break;
-				case "SE": C.attemptMove(5); break;
+				case "N": C.attemptMove(3); target.setValue((Integer) C.player.getPosition()); break;
+				case "S": C.attemptMove(0); target.setValue((Integer) C.player.getPosition()); break;
+				case "NW": C.attemptMove(2); target.setValue((Integer) C.player.getPosition()); break;
+				case "NE": C.attemptMove(4); target.setValue((Integer) C.player.getPosition()); break;
+				case "SW": C.attemptMove(1); target.setValue((Integer) C.player.getPosition()); break;
+				case "SE": C.attemptMove(5); target.setValue((Integer) C.player.getPosition()); break;
 				case "rcw": C.rotateCell((int)target.getValue(),-1); break;
 				case "rccw": C.rotateCell((int)target.getValue(), 1); break;
 			}
