@@ -4,8 +4,8 @@ public class Player{
     private int num_arrows; 
 
     
-    public Player(int n) {
-        this.num_arrows = n; 
+    public Player() {
+        //hi
     }
    
     public int getPosition(){ return playerPosition; }
