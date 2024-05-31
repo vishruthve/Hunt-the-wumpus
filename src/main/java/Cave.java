@@ -16,13 +16,8 @@ public class Cave extends Base{
 		makeCaveFromInts(data);
 	}
 
-	private Cave(boolean a){
-		player = new Player(false);
-		player.setPosition(15);
-	}
-
 	public Cave(){
-		player = new Player(false);
+		player = new Player();
 		player.setPosition(15);
 		CELLCOUNT = WIDTH*HEIGHT;
 		makeDefaultUpCavern();
@@ -31,7 +26,7 @@ public class Cave extends Base{
 	public Cave(String path) throws FileNotFoundException{
 		cavern = Parser.parseCave(new File("src/main/java/cave/"+path+".txt"));
 		CELLCOUNT = cavern.length;
-		player = new Player(false);
+		player = new Player();
 		player.setPosition(cavern.length/2);
 	}
 
