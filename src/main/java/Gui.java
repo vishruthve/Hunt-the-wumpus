@@ -34,10 +34,10 @@ public class Gui extends JFrame implements ActionListener{
         } catch(Exception e){
             System.out.println(e);
         }
-		target = new JSpinner(new SpinnerNumberModel(15,0,C.CELLCOUNT-1,1));
+		target = new JSpinner(new SpinnerNumberModel(C.player.getPosition(),0,C.CELLCOUNT-1,1));
 		target.setFont(tet);
 		cav = new CaveRender(C);
-		c.linkRender(cav);
+		C.linkRender(cav);
 		controls.setLayout(new BoxLayout(controls, BoxLayout.LINE_AXIS));
 		controls.setBorder(BorderFactory.createBevelBorder(0));
 		rotate.setActionCommand("rcw");
