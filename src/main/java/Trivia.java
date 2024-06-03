@@ -17,7 +17,8 @@ public class Trivia {
     int numArrows; 
     public Trivia() throws FileNotFoundException, java.text.ParseException{
         //filler*
-        Scanner s = new Scanner(new File("C:\\Git6\\Hunt-the-wumpus\\src\\main\\java\\Wumpus_Trivia - Sheet1.tsv"));
+        Scanner s = new Scanner(new File("src/main/java/trivia/Wumpus_Trivia - Sheet1.tsv"));
+        s.nextLine();
         while(s.hasNextLine()){
             
             Questions.add(s.nextLine());
@@ -25,7 +26,7 @@ public class Trivia {
 
         //add more later 
         }
-        String[] arr = s.nextLine().split("\t");
+        String[] arr = Questions.get(0).split("\t");
         Trivia_Question = arr[0];
         correctIndex = Integer.parseInt(arr[1]);
         Trivia_Answers.add(arr[2]);
