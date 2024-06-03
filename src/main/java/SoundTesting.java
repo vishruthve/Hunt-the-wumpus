@@ -16,7 +16,7 @@ public class SoundTesting {
         }
     }
 
-    public static playSound() {
+    public static void playSound() {
         clip.start(); 
     }
 
