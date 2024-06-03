@@ -26,6 +26,7 @@ public class Trivia {
 
         //add more later 
         }
+        s.close();
         String[] arr = Questions.get(0).split("\t");
         Trivia_Question = arr[0];
         correctIndex = Integer.parseInt(arr[1]);
