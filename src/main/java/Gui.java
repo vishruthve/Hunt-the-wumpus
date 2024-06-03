@@ -45,7 +45,7 @@ public class Gui extends JFrame implements ActionListener{
 		rotcells.setLabelFor(target);
 		JPanel rotcont = new JPanel(new GridBagLayout());
 		con.gridwidth=3;
-		con.fill = con.VERTICAL;
+		con.fill = 3;
 		rotcont.add(rotcells, con);
 		con.gridwidth=1;
 		con.gridy=1;
