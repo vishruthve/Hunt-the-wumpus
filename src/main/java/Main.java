@@ -1,7 +1,7 @@
 // Aiden Whitlock
 import java.io.FileNotFoundException;
 //import java.util.*;
-public class Main extends Base{
+public class Main {
 	public static Cave c;
 	public static Gui g;
 	public static void main(String[] args) throws FileNotFoundException{

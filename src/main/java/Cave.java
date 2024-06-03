@@ -5,7 +5,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;	
-public class Cave extends Base{
+public class Cave {
 	public int CELLCOUNT, WIDTH=12, HEIGHT=5;
 	private Cell[] cavern;
 	private CaveRender rend;
