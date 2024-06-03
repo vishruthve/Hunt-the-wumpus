@@ -8,8 +8,4 @@ public class Enemy {
         this.y = y;
     }
 
-    
-
-
-
 }
