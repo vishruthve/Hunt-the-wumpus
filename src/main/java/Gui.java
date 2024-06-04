@@ -21,6 +21,10 @@ public class Gui extends JFrame implements ActionListener{
 	private JLabel moveGuide = new JLabel("(Alt+QWEASD)");
 	private GridBagConstraints con = new GridBagConstraints();
 	private Font tet;
+	private JLabel question = new JLabel("trivia");
+	private JPanel triviaBox = new JPanel();
+	private JButton[] triviaAnswers = new JButton[0];
+	Trivia triv;
 
 	public Gui(Cave c){
 		super("Wumpus Hunter");
@@ -60,7 +64,24 @@ public class Gui extends JFrame implements ActionListener{
 		rotcells.setOpaque(true);
 		rotcont.setBorder(BorderFactory.createBevelBorder(0));
 		controls.add(rotcont);
-		controls.add(Box.createHorizontalStrut(860));
+		controls.add(triviaBox);
+		triviaBox.setPreferredSize(new Dimension(860, 50));
+		triviaBox.add(question);
+		try {
+			triv = new Trivia();
+		} catch(Exception e) {
+			System.out.println(e);
+		}
+		triv.getNewTrivia();
+		triviaAnswers = new JButton[triv.Trivia_Answers.size()];
+		for (int i=0;i<triviaAnswers.length;i++){
+			triviaAnswers[i] = new JButton(triv.Trivia_Answers.get(i));
+			triviaAnswers[i].setActionCommand("a"+i);
+			triviaAnswers[i].addActionListener(this);
+			triviaAnswers[i].setMargin(new Insets(1, 1, 1, 1));
+			triviaBox.add(triviaAnswers[i]);
+		}
+		//controls.add(Box.createHorizontalStrut(860));
 		for (int i=0;i<6;i++){
 			hexButtons[i] = new JButton(labs[i]);
 			hexButtons[i].setActionCommand(dirs[i]);
@@ -113,6 +134,7 @@ public class Gui extends JFrame implements ActionListener{
 
 	}
 	public void actionPerformed(ActionEvent e) {
+		System.out.println(e.getActionCommand());
 		if (e.getActionCommand()!=null){
 			switch (e.getActionCommand()){
 				case "N": C.attemptMove(3); target.setValue((Integer) C.player.getPosition()); break;

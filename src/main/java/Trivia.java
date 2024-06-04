@@ -14,14 +14,10 @@ public class Trivia {
     int correctIndex;
     public Trivia() throws FileNotFoundException, java.text.ParseException{
         //filler*
-        Scanner s = new Scanner(new File("src/main/java/trivia/Wumpus_Trivia - Sheet1.tsv"));
-        s.nextLine();
-        while(s.hasNextLine()){
-            
+        Scanner s = new Scanner(new File("C:\\git-6\\Hunt-the-wumpus\\src\\main\\java\\trivia\\Wumpus_Trivia - Sheet1.tsv"));
+        //s.nextLine();
+        while(s.hasNextLine()){   
             Questions.add(s.nextLine());
-            
-
-        //add more later 
         }
         s.close();
         getNewTrivia();
