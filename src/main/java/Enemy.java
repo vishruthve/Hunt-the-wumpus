@@ -1,5 +1,16 @@
-public interface Enemy{
-    public void move(int x, int y);
-    public void attack(Player player);
-    public void defend(Player player);
+public class Enemy{
+    private int enemyPosition = 0; 
+    private boolean death = false; 
+
+    public Enemy(int enemyPosition) {
+        this.enemyPosition = enemyPosition; 
+    }
+
+    public int returnEnemyPosition() { 
+        return enemyPosition; 
+    }
+    public void setEnemyPosition(int pos) {
+        this.enemyPosition = pos; 
+    }
+
 }                                                      
