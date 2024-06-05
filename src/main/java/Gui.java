@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.io.*;
+import java.util.*;
 
 public class Gui extends JFrame implements ActionListener{
 	private CaveRender cav;  
@@ -24,9 +25,8 @@ public class Gui extends JFrame implements ActionListener{
 	private JLabel question = new JLabel("trivia");
 	private JPanel triviaBox = new JPanel();
 	private JButton[] triviaAnswers = new JButton[0];
-	Trivia triv;
 
-	public Gui(Cave c){
+	public Gui(Cave c) throws FileNotFoundException{
 		super("Wumpus Hunter");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
@@ -67,20 +67,16 @@ public class Gui extends JFrame implements ActionListener{
 		controls.add(triviaBox);
 		triviaBox.setPreferredSize(new Dimension(860, 50));
 		triviaBox.add(question);
-		try {
-			triv = new Trivia();
-		} catch(Exception e) {
-			System.out.println(e);
-		}
-		triv.getNewTrivia();
-		triviaAnswers = new JButton[triv.Trivia_Answers.size()];
+		Trivia.getNewTrivia();
+		triviaAnswers = new JButton[Trivia.Trivia_Answers.size()];
 		for (int i=0;i<triviaAnswers.length;i++){
-			triviaAnswers[i] = new JButton(triv.Trivia_Answers.get(i));
+			triviaAnswers[i] = new JButton(Trivia.Trivia_Answers.get(i));
 			triviaAnswers[i].setActionCommand("a"+i);
 			triviaAnswers[i].addActionListener(this);
 			triviaAnswers[i].setMargin(new Insets(1, 1, 1, 1));
 			triviaBox.add(triviaAnswers[i]);
 		}
+		
 		//controls.add(Box.createHorizontalStrut(860));
 		for (int i=0;i<6;i++){
 			hexButtons[i] = new JButton(labs[i]);

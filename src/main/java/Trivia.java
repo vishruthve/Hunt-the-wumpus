@@ -1,21 +1,24 @@
-
-
 //Akshay
-import java.util.ArrayList;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 public class Trivia {
-    String Trivia_Question; 
-    ArrayList<String> Trivia_Answers = new ArrayList<String>();
-    ArrayList<String> Questions = new ArrayList<String>();
-    int correctIndex;
-    public Trivia() throws FileNotFoundException, java.text.ParseException{
-        //filler*
-        Scanner s = new Scanner(new File("C:\\git-6\\Hunt-the-wumpus\\src\\main\\java\\trivia\\Wumpus_Trivia - Sheet1.tsv"));
-        //s.nextLine();
+    public static String Trivia_Question = ""; 
+    public static ArrayList<String> Trivia_Answers = new ArrayList<String>();
+    public static ArrayList<String> Questions = new ArrayList<String>();
+    public static int correctIndex = 0;
+
+    static{
+        File tr;
+        try{
+            tr = new File("src/main/java/tfold/trivia.txt");
+        } catch (Exception e){
+            System.out.println(e);
+        }
+        Scanner s = new Scanner(tr);
+        System.out.println(s.nextLine());
+        System.out.println("SHITTY ASS");
         while(s.hasNextLine()){   
             Questions.add(s.nextLine());
         }
@@ -23,18 +26,16 @@ public class Trivia {
         getNewTrivia();
     }
 
-    public void getNewTrivia(){
+    public Trivia(){}
+
+    public static String getNewTrivia(){
         String[] arr = Questions.get((int)(Math.random()*Questions.size())).split("\t");
         Trivia_Question = arr[0];
         correctIndex = Integer.parseInt(arr[1]);
         Trivia_Answers.clear();
         for(int i=2;i<arr.length;i++) Trivia_Answers.add(arr[i]);
+        return Trivia_Question;
     }
-
-    public boolean checkAnswer(int guess) {
-        return guess == correctIndex;
-    }
-
 
 
 }
