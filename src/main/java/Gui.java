@@ -132,6 +132,7 @@ public class Gui extends JFrame implements ActionListener{
 			triviaBox.add(triviaAnswers[i]);
 		}
 		pack();
+		paint(getGraphics());
 	}
 	public void actionPerformed(ActionEvent e) {
 		System.out.println(e.getActionCommand());

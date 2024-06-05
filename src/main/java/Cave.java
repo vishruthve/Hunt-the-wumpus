@@ -17,7 +17,7 @@ public class Cave {
 	}
 
 	public Cave(){
-		player = new Player();
+		player = new Player(0,0);
 		player.setPosition(15);
 		CELLCOUNT = WIDTH*HEIGHT;
 		makeDefaultUpCavern();
@@ -47,20 +47,23 @@ public class Cave {
 	}
 
 	public boolean canTraverse(int id, int dir){
-		return cavern[id].doorState()[dir] && cavern[cavern[id].getNeighbors()[dir]].doorState()[(dir+3)%6];
+		return cavern[id].doorState()[dir] && cavern[cavern[id].NEIGHBORIDS[dir]].doorState()[(dir+3)%6];
 	}
 
 
 	public void rotateCell(int t, int a){
 		cavern[t].rotation += a;
-		rend.repaint(100, rend.msq()[0], rend.msq()[1], rend.msq()[2], rend.msq()[3]);
+		rend.clearPlayer();
+		rend.renderCave(cavern[t]);
+		for(int i=0;i<6;i++)rend.renderCave(cavern[cavern[t].NEIGHBORIDS[i]]);
+		rend.update(rend.getGraphics());
 	}
 
 	public void attemptMove(int dir){
 		if (canTraverse(player.getPosition(), dir)){
-			rend.repaint(10, rend.msq()[0], rend.msq()[1], rend.msq()[2], rend.msq()[3]);
-			player.setPosition(cavern[player.getPosition()].getNeighbors()[dir]);
-			rend.repaint(10, rend.msq()[0], rend.msq()[1], rend.msq()[2], rend.msq()[3]);
+			rend.clearPlayer();
+			player.setPosition(cavern[player.getPosition()].NEIGHBORIDS[dir]);
+			rend.update(rend.getGraphics());
 		}
 	}
 
@@ -101,10 +104,6 @@ public class Cave {
 			NEIGHBORIDS = Arrays.copyOfRange(data, 2, 8);
 			SHAPE = data[8];
 			rotation = data[9];
-		}
-
-		public int[] getNeighbors(){
-			return NEIGHBORIDS;
 		}
 
 		public boolean[] doorState(){
