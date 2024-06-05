@@ -4,8 +4,8 @@ public class Player{
     private int num_arrows; 
 
     
-    public Player() {
-        //hi
+    public Player(int playerPos) {
+        this.playerPosition = playerPos; 
     }
    
     public int getPosition(){ return playerPosition; }
