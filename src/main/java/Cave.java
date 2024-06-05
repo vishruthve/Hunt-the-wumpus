@@ -30,7 +30,7 @@ public class Cave {
 			System.out.println(e);
 		}
 		CELLCOUNT = cavern.length;
-		player = new Player();
+		player = new Player(0, 100);
 		player.setPosition(cavern.length/2);
 	}
 
@@ -53,13 +53,14 @@ public class Cave {
 
 	public void rotateCell(int t, int a){
 		cavern[t].rotation += a;
-		rend.repaint();
+		rend.repaint(100, rend.msq()[0], rend.msq()[1], rend.msq()[2], rend.msq()[3]);
 	}
 
 	public void attemptMove(int dir){
 		if (canTraverse(player.getPosition(), dir)){
+			rend.repaint(10, rend.msq()[0], rend.msq()[1], rend.msq()[2], rend.msq()[3]);
 			player.setPosition(cavern[player.getPosition()].getNeighbors()[dir]);
-			rend.repaint();
+			rend.repaint(10, rend.msq()[0], rend.msq()[1], rend.msq()[2], rend.msq()[3]);
 		}
 	}
 

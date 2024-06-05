@@ -45,6 +45,17 @@ public class CaveRender extends Canvas{
         //setIgnoreRepaint(true);
         
     }  
+
+    public int[] msq(){
+        double x = c.getCavern()[c.player.getPosition()].XPOS*1.5*size+size+xOffset;
+        double y = c.getCavern()[c.player.getPosition()].YPOS*2*size*Math.sin(e)+(c.getCavern()[c.player.getPosition()].XPOS%2==1?size*Math.sin(e):0)+size+yOffset;
+        int[] out = new int[4];
+        out[0] = r(x-3*size);
+        out[1] = r(y-3*size);
+        out[2] = r(3*2*size);
+        out[3] = r(3*2*size);
+        return out;
+    }
     public void renderPlayer(){
         double x = c.getCavern()[c.player.getPosition()].XPOS*1.5*size+size+xOffset;
         double y = c.getCavern()[c.player.getPosition()].YPOS*2*size*Math.sin(e)+(c.getCavern()[c.player.getPosition()].XPOS%2==1?size*Math.sin(e):0)+size+yOffset;
