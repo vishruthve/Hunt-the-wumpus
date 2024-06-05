@@ -22,11 +22,10 @@ public class Gui extends JFrame implements ActionListener{
 	private JLabel moveGuide = new JLabel("(Alt+QWEASD)");
 	private GridBagConstraints con = new GridBagConstraints();
 	private Font tet;
-	private JLabel question = new JLabel("trivia");
 	private JPanel triviaBox = new JPanel();
 	private JButton[] triviaAnswers = new JButton[0];
 
-	public Gui(Cave c) throws FileNotFoundException{
+	public Gui(Cave c) {
 		super("Wumpus Hunter");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
@@ -66,16 +65,7 @@ public class Gui extends JFrame implements ActionListener{
 		controls.add(rotcont);
 		controls.add(triviaBox);
 		triviaBox.setPreferredSize(new Dimension(860, 50));
-		triviaBox.add(question);
-		Trivia.getNewTrivia();
-		triviaAnswers = new JButton[Trivia.Trivia_Answers.size()];
-		for (int i=0;i<triviaAnswers.length;i++){
-			triviaAnswers[i] = new JButton(Trivia.Trivia_Answers.get(i));
-			triviaAnswers[i].setActionCommand("a"+i);
-			triviaAnswers[i].addActionListener(this);
-			triviaAnswers[i].setMargin(new Insets(1, 1, 1, 1));
-			triviaBox.add(triviaAnswers[i]);
-		}
+		refreshTrivia();
 		
 		//controls.add(Box.createHorizontalStrut(860));
 		for (int i=0;i<6;i++){
@@ -129,6 +119,20 @@ public class Gui extends JFrame implements ActionListener{
         setVisible(true);	
 
 	}
+	public void refreshTrivia(){
+		triviaBox.removeAll();
+		Trivia.getNewTrivia();
+		triviaBox.add(new JLabel(Trivia.Trivia_Question));
+		triviaAnswers = new JButton[Trivia.Trivia_Answers.size()];
+		for (int i=0;i<triviaAnswers.length;i++){
+			triviaAnswers[i] = new JButton(Trivia.Trivia_Answers.get(i));
+			triviaAnswers[i].setActionCommand("a"+i);
+			triviaAnswers[i].addActionListener(this);
+			triviaAnswers[i].setMargin(new Insets(1, 1, 1, 1));
+			triviaBox.add(triviaAnswers[i]);
+		}
+		pack();
+	}
 	public void actionPerformed(ActionEvent e) {
 		System.out.println(e.getActionCommand());
 		if (e.getActionCommand()!=null){
@@ -141,6 +145,11 @@ public class Gui extends JFrame implements ActionListener{
 				case "SE": C.attemptMove(5); target.setValue((Integer) C.player.getPosition()); break;
 				case "rcw": C.rotateCell((int)target.getValue(),-1); break;
 				case "rccw": C.rotateCell((int)target.getValue(), 1); break;
+				case "nt": refreshTrivia(); break;
+			}
+			if(e.getActionCommand().charAt(0)=='a'){
+				Trivia.checkAnswer(Integer.parseInt(e.getActionCommand().substring(1)));
+				refreshTrivia();
 			}
 		}
 		for(int i=0;i<6;i++){

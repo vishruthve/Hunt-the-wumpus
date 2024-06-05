@@ -23,8 +23,12 @@ public class Cave {
 		makeDefaultUpCavern();
 	}
 
-	public Cave(String path) throws FileNotFoundException{
+	public Cave(String path) {
+		try {
 		cavern = Parser.parseCave(new File("src/main/java/cave/"+path+".txt"));
+		} catch(Exception e){
+			System.out.println(e);
+		}
 		CELLCOUNT = cavern.length;
 		player = new Player();
 		player.setPosition(cavern.length/2);
