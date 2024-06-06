@@ -1,7 +1,5 @@
 // Aiden Whitlock
 
-// oh my god its finally done
-
 import java.io.File;
 import java.util.*;	
 public class Cave {

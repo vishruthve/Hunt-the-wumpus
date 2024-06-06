@@ -8,8 +8,8 @@ public class CaveRender extends Canvas{
     private static final double e = Math.PI/3;
     private static final int size = 60, xOffset = 1, yOffset = -7;
     private static final double rot = 0;//Math.toRadians(-30.0);
-    private static final Color background = new Color(0xc1eebe);
     private static final Color hexBG = new Color(0x15acde);
+    private static final Color background = new Color(0x035aac);//new Color(0xc1eebe);
     private static final Color path = new Color(0x129be0);
     private static final Color closed = new Color(0x112121);
     private static final Color open = new Color(0x0a5bb2);
@@ -40,7 +40,10 @@ public class CaveRender extends Canvas{
     public void paint(Graphics g){ 
         g2 = (Graphics2D) g;
         setBackground(background);
-        renderCave();
+        //renderCave();
+        renderCave(c.getCavern()[c.player.getPosition()]);
+        renderPlayer();
+        update(getGraphics());
         
     }  
 
@@ -68,9 +71,10 @@ public class CaveRender extends Canvas{
         g2.setColor(Color.CYAN);
         g2.setStroke(new BasicStroke(12.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
         g2.drawPolygon(p);
-        g2.setColor(Color.LIGHT_GRAY);
-        g2.setStroke(new BasicStroke(5.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
         for (int z=0; z<6;z++){
+            renderCave(c.getCavern()[c.getCavern()[c.player.getPosition()].NEIGHBORIDS[z]]);
+            g2.setColor(Color.LIGHT_GRAY);
+            g2.setStroke(new BasicStroke(5.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
             if (c.canTraverse(c.player.getPosition(), z)){
             x = c.getCavern()[c.getCavern()[c.player.getPosition()].NEIGHBORIDS[z]].XPOS*1.5*size+size+xOffset;
             y = c.getCavern()[c.getCavern()[c.player.getPosition()].NEIGHBORIDS[z]].YPOS*2*size*Math.sin(e)+(c.getCavern()[c.getCavern()[c.player.getPosition()].NEIGHBORIDS[z]].XPOS%2==1?size*Math.sin(e):0)+size+yOffset;
@@ -79,6 +83,8 @@ public class CaveRender extends Canvas{
             g2.drawPolygon(p);
             }
         }
+        p = new Polygon();
+        for (int i = 0; i < 6; i++) p.addPoint(r(x+(size-17)*cosCache[i]),r(y+(size-17)*sinCache[i]));
     }
 
     public void clearPlayer(){

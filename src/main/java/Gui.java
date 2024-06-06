@@ -22,7 +22,10 @@ public class Gui extends JFrame implements ActionListener{
 	private GridBagConstraints con = new GridBagConstraints();
 	private Font tet;
 	private JPanel triviaBox = new JPanel();
+	private JPanel trivialBox = new JPanel();
 	private JButton[] triviaAnswers = new JButton[0];
+	private JPanel arrows = new JPanel();
+
 
 	public Gui(Cave c) {
 		super("Wumpus Hunter");
@@ -62,8 +65,13 @@ public class Gui extends JFrame implements ActionListener{
 		rotcells.setOpaque(true);
 		rotcont.setBorder(BorderFactory.createBevelBorder(0));
 		controls.add(rotcont);
-		controls.add(triviaBox);
-		triviaBox.setPreferredSize(new Dimension(860, 50));
+		JPanel triv = new JPanel();
+		controls.add(triv);
+		triv.add(triviaBox);
+		triv.add(trivialBox);
+		triv.setPreferredSize(new Dimension(800, 50));
+		arrows.setPreferredSize(new Dimension(60, 50));
+		controls.add(arrows);
 		refreshTrivia();
 		
 		//controls.add(Box.createHorizontalStrut(860));
@@ -119,17 +127,22 @@ public class Gui extends JFrame implements ActionListener{
 
 	}
 	public void refreshTrivia(){
+		arrows.removeAll();
+		arrows.add(new JLabel("gold:"+C.player.getGold()));
+		arrows.add(new JLabel("arrows:"+C.player.getArrows()));
 		triviaBox.removeAll();
-		Trivia.getNewTrivia();
-		triviaBox.add(new JLabel(Trivia.Trivia_Question));
+		trivialBox.removeAll();
+		triviaBox.add(new JLabel(Trivia.getNewTrivia()));
 		triviaAnswers = new JButton[Trivia.Trivia_Answers.size()];
 		for (int i=0;i<triviaAnswers.length;i++){
 			triviaAnswers[i] = new JButton(Trivia.Trivia_Answers.get(i));
-			triviaAnswers[i].setActionCommand("a"+i);
+			triviaAnswers[i].setActionCommand("a"+(i+1));
 			triviaAnswers[i].addActionListener(this);
 			triviaAnswers[i].setMargin(new Insets(1, 1, 1, 1));
 			triviaBox.add(triviaAnswers[i]);
 		}
+		trivialBox.add(new JLabel(Trivia.goodAnswer));
+		trivialBox.add(new JLabel(Trivia.Trivia_Answer));
 		pack();
 		paint(getGraphics());
 	}
@@ -148,7 +161,7 @@ public class Gui extends JFrame implements ActionListener{
 				case "nt": refreshTrivia(); break;
 			}
 			if(e.getActionCommand().charAt(0)=='a'){
-				Trivia.checkAnswer(Integer.parseInt(e.getActionCommand().substring(1)));
+				Trivia.checkAnswer(Integer.parseInt(e.getActionCommand().substring(1)), C.player);
 				refreshTrivia();
 			}
 		}
