@@ -3,7 +3,6 @@
 // oh my god its finally done
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.*;	
 public class Cave {
 	public int CELLCOUNT, WIDTH=12, HEIGHT=5;
