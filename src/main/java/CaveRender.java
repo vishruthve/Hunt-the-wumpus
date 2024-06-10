@@ -9,10 +9,10 @@ public class CaveRender extends Canvas{
     private static final int size = 60, xOffset = 1, yOffset = -7;
     private static final double rot = 0;//Math.toRadians(-30.0);
     private static final Color hexBG = new Color(0x15acde);
-    private static final Color background = new Color(0x035aac);//new Color(0xc1eebe);
+    private static final Color background = new Color(0x024a6c);//new Color(0xc1eebe);
     private static final Color path = new Color(0x129be0);
     private static final Color closed = new Color(0x112121);
-    private static final Color open = new Color(0x0a5bb2);
+    private static final Color open = new Color(0x0a6bc2);
     private static Font tet;
     private static final BasicStroke hexLine = new BasicStroke(4.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER);
     private static final double[] sinCache = {
@@ -40,7 +40,7 @@ public class CaveRender extends Canvas{
     public void paint(Graphics g){ 
         g2 = (Graphics2D) g;
         setBackground(background);
-        //renderCave();
+        renderCave();
         renderCave(c.getCavern()[c.player.getPosition()]);
         renderPlayer();
         update(getGraphics());
