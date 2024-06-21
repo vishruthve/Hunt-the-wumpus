@@ -123,7 +123,7 @@ public class Gui extends JFrame implements ActionListener{
 		
 
 		pack();
-        setVisible(true);	
+        setVisible(true);
 
 	}
 	public void refreshTrivia(){

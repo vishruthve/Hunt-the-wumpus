@@ -11,10 +11,10 @@ public class CaveRender extends Canvas{
     private static final Color hexBG = new Color(0x15acde);
     private static final Color background = new Color(0x024a6c);//new Color(0xc1eebe);
     private static final Color path = new Color(0x129be0);
-    private static final Color closed = new Color(0x112121);
+    private static final Color closed = new Color(0x112131);
     private static final Color open = new Color(0x0a6bc2);
     private static Font tet;
-    private static final BasicStroke hexLine = new BasicStroke(4.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER);
+    private static final BasicStroke hexLine = new BasicStroke(4.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 1.0f, new float[] {0.0f,6.0f,48.0f,6.0f,0.0f}, 1.0f);
     private static final double[] sinCache = {
             Math.sin(e+rot),
             Math.sin(2*e+rot),
@@ -50,7 +50,6 @@ public class CaveRender extends Canvas{
     public void update(Graphics g){
         g2 = (Graphics2D) g;
         renderPlayer();
-
     }
 
     public int[] msq(){
@@ -73,7 +72,7 @@ public class CaveRender extends Canvas{
         g2.drawPolygon(p);
         for (int z=0; z<6;z++){
             renderCave(c.getCavern()[c.getCavern()[c.player.getPosition()].NEIGHBORIDS[z]]);
-            g2.setColor(Color.LIGHT_GRAY);
+            g2.setColor(new Color(0xffffff));
             g2.setStroke(new BasicStroke(5.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
             if (c.canTraverse(c.player.getPosition(), z)){
             x = c.getCavern()[c.getCavern()[c.player.getPosition()].NEIGHBORIDS[z]].XPOS*1.5*size+size+xOffset;
@@ -123,9 +122,13 @@ public class CaveRender extends Canvas{
         double x = C.XPOS*1.5*size+size+xOffset;
         double y = C.YPOS*2*size*Math.sin(e)+(C.XPOS%2==1?size*Math.sin(e):0)+size+yOffset;
         Polygon p = new Polygon();
-        for (int i = 0; i < 6; i++) p.addPoint(r(x+(size-1)*cosCache[i]),r(y+(size-1)*sinCache[i]));
+        for (int i = 0; i < 6; i++) p.addPoint(r(x+(size-2)*cosCache[i]),r(y+(size-2)*sinCache[i]));
         g2.setColor(hexBG);
         g2.fillPolygon(p);
+        g2.setColor(new Color(0x024a9c));
+        g2.setStroke(new BasicStroke(4.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER));
+        g2.drawPolygon(p);
+        //g2.drawPolygon(p);
         g2.setStroke(hexLine);
         for(int j=0;j<6;j++){
             g2.setColor(c.canTraverse(C.CELLID, j)?path:(C.doorState()[j]?open:closed));
